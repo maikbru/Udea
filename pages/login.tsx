@@ -1,6 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Login() {
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleLogin = async () => {
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user, password })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      localStorage.setItem('empresaId', data.empresaId);
+      router.push('/page1');
+    } else {
+      alert(data.message || 'Error al iniciar sesión');
+    }
+  };
+
+  useEffect(() => {
+    const empresaId = localStorage.getItem('empresaId');
+    if (empresaId) {
+      router.push('/page1');
+    }
+  }, [router]);
+
   return (
     <div className="min-h-screen bg-sky-200 flex flex-col items-center">
       {/* Barra superior negra */}
@@ -22,18 +51,25 @@ export default function Login() {
         <label className="block text-black text-sm font-bold mb-1">Usuario</label>
         <input
           type="text"
-          className="w-full mb-4 p-2 rounded shadow bg-teal-50 border border-gray-200 focus:outline-none"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+          className="w-full mb-4 p-2 text-black rounded shadow bg-teal-50 border border-gray-200 focus:outline-none"
         />
 
         <label className="block text-black text-sm font-bold mb-1">Clave</label>
         <input
           type="password"
-          className="w-full mb-6 p-2 rounded shadow bg-teal-50 border border-gray-200 focus:outline-none"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full mb-6 text-black p-2 rounded shadow bg-teal-50 border border-gray-200 focus:outline-none"
         />
         <div className="w-full flex justify-center">
-        <button className="w-50 text-black bg-teal-500 hover:bg-teal-600 text-white py-2 rounded font-semibold mb-4">
-          Entrar
-        </button>
+          <button
+            onClick={handleLogin}
+            className="w-50 text-black bg-teal-500 hover:bg-teal-600 text-white py-2 rounded font-semibold mb-4"
+          >
+            Entrar
+          </button>
         </div>
 
         <div className="flex justify-between text-sm">

@@ -3,7 +3,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MdColorLens } from "react-icons/md";
 import { FaChevronLeft, FaChevronRight, FaUpload, FaTrash, FaUser } from 'react-icons/fa';
 import { RiArchiveDrawerFill } from "react-icons/ri";
+import { useRouter } from 'next/router';
+
 export default function CustomizationPage() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [config, setConfig] = useState<any>(null);
   // State for sidebar collapse
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -11,36 +16,41 @@ export default function CustomizationPage() {
   const [sidebarColor, setSidebarColor] = useState('#2563eb');
   const [username, setUsername] = useState('Usuario123');
   const [logo, setLogo] = useState<string | null>(null);
+  const [welcomeText, setWelcomeText] = useState('');
 
   const [showUserMenu, setShowUserMenu] = useState(false);
   
 
   // Refs
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
   const logoInputRef = useRef<HTMLInputElement | null>(null);
   const userMenuRef = useRef<HTMLDivElement | null>(null);
 
-  // Handle image upload
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+ const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result as string); // Forzamos a string porque sabemos que es base64
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const targetSize = 100;
+
+      canvas.width = targetSize;
+      canvas.height = targetSize;
+
+      ctx?.drawImage(img, 0, 0, targetSize, targetSize);
+      const resizedDataUrl = canvas.toDataURL('image/png');
+      setLogo(resizedDataUrl);
     };
-    reader.readAsDataURL(file);
-  }
-};
-  // Handle logo upload
-  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const file = e.target.files?.[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setLogo(reader.result as string); // fuerza el tipo
-    };
-    reader.readAsDataURL(file);
-  }
+    img.src = reader.result as string;
+  };
+
+  reader.readAsDataURL(file);
 };
 
   // Remove image
@@ -65,7 +75,7 @@ export default function CustomizationPage() {
   
 };
 
-
+  
   // Close user menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -87,8 +97,60 @@ export default function CustomizationPage() {
   }
   
 }, []);
+  const handleLogout = () => {
+    localStorage.removeItem('empresaId');
+    router.push('/login');
+  };
+
+ //guardar datos de la empresa
+  const saveToDatabase = async () => {
+  const empresaId = localStorage.getItem('empresaId');
+  if (!empresaId) return alert("Empresa no identificada");
+
+  const res = await fetch('/api/savecustom', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      empresaId,
+      logo,
+      bgColor,
+      sidebarColor,
+      welcomeText, // O tu input personalizado
+    }),
+  });
+
+  const data = await res.json();
+  if (res.ok) {
+    alert('Cambios guardados en la base de datos');
+  } else {
+    alert(data.message || 'Error al guardar');
+  }
+};
 
 
+  useEffect(() => {
+    const empresaId = localStorage.getItem('empresaId');
+    if (!empresaId) {
+      router.push('/login');
+    } else {
+    fetch(`/api/getcustom?empresaId=${empresaId}`)
+      .then(res => res.json())
+      .then(data => {
+        setConfig(data);
+        setLogo(data.logo || null);
+        setBgColor(data.bgColor || '#f8fafc');
+        setSidebarColor(data.sidebarColor || '#2563eb');
+        // También puedes cargar welcomeText si tienes el input
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.error('Error cargando configuración:', err);
+        setIsLoading(false);
+      });
+  }
+}, [router]);
+
+  if (isLoading) return null;
   return (
     <div className="back bg-gray-100 font-sans min-h-screen"
     style={{ backgroundColor: bgColor }}
@@ -100,7 +162,7 @@ export default function CustomizationPage() {
         <div className="flex items-center">
           <div className="relative">
             <div 
-              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl cursor-pointer"
+              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl cursor-pointer overflow-hidden"
               style={{
                 backgroundImage: logo ? `url(${logo})` : 'linear-gradient(to right, #8b5cf6, #ec4899)',
                 backgroundSize: 'cover',
@@ -113,7 +175,7 @@ export default function CustomizationPage() {
             <input 
               type="file" 
               ref={logoInputRef}
-              onChange={handleLogoUpload}
+              onChange={handleImageUpload}
               className="hidden"
               accept="image/*"
             />
@@ -124,13 +186,9 @@ export default function CustomizationPage() {
         {/* User Options */}
         <div className="flex items-center space-x-4">
           <div className="hidden md:flex items-center">
-            <span className="text-gray-700">Bienvenido,</span>
-            <input 
-              type="text" 
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="font-semibold ml-1 bg-transparent border-b border-gray-300 focus:outline-none focus:border-blue-500 w-32"
-            />
+            <h1 className="text-2xl font-bold text-gray-800 mb-4">
+              Bienvenido{config?.username ? `, ${config.username}` : ''}
+            </h1>
           </div>
           <div className="relative" ref={userMenuRef}>
             <button 
@@ -143,7 +201,12 @@ export default function CustomizationPage() {
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
                 <a href="1" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Perfil</a>
                 <a href="2" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Configuración</a>
-                <a href="login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cerrar sesión</a>
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Cerrar sesión
+                </button>
               </div>
             )}
           </div>
@@ -207,20 +270,20 @@ export default function CustomizationPage() {
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Logo</h2>
             <div className="flex">
-            <button 
-              className="bg-white-50 border border-blue-700 rounded-3xl hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition"
-              onClick={() => fileInputRef.current?.click()}
-              style={{ borderColor: '#11998e' }}
-            >
-              <div className="flex" >
-                <h1 className='bg-gray-300 p-1 shadow shadow-lg shadow-gray-500 font-semibold text-gray-800'>Seleccionar archivo</h1>
-                <h1 className='text text-blue-300 px-4 py mt-1'>ningun archivo seleccionado</h1>
-              </div>
-            </button>
-            <button className="bg-white-50 ml-10 shadow shadow-lg shadow-gray-600 border border-blue-700 rounded-3xl hover:bg-blue-600 font-medium py-2 px-4 rounded transition"
-              onClick={() => fileInputRef.current?.click()}
-              style={{ borderColor: '#11998e'}}>
-                <h1 className='text text-black px-4 mt-1'>Cargar archivos</h1>{/*cargar achivos*/}
+              <button 
+                className="bg-white-50 border border-blue-700 rounded-3xl hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition"
+                onClick={() => fileInputRef.current?.click()}
+                style={{ borderColor: '#11998e' }}
+              >
+                <div className="flex">
+                  <h1 className='bg-gray-300 p-1 shadow shadow-lg shadow-gray-500 font-semibold text-gray-800'>Seleccionar archivo</h1>
+                  <h1 className='text text-blue-300 px-4 py mt-1'>{logo ? 'Archivo cargado' : 'ningún archivo seleccionado'}</h1>
+                </div>
+              </button>
+              <button className="bg-white-50 ml-10 shadow shadow-lg shadow-gray-600 border border-blue-700 rounded-3xl hover:bg-blue-600 font-medium py-2 px-4 rounded transition"
+                onClick={() => fileInputRef.current?.click()}
+                style={{ borderColor: '#11998e' }}>
+                <h1 className='text text-black px-4 mt-1'>Cargar archivos</h1>
               </button>
             </div>
             <input 
@@ -230,19 +293,19 @@ export default function CustomizationPage() {
               className="hidden"
               accept="image/*"
             />
-            
-            {/* Image Preview */}
-            {imagePreview && (
+
+            {logo && (
               <div className="mt-4 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                <img src={imagePreview} className="max-h-60 mx-auto" alt="Vista previa" />
+                <img src={logo} className="max-h-60 mx-auto object-contain" alt="Vista previa" />
                 <button 
                   className="mt-2 text-red-500 hover:text-red-700 text-sm"
-                  onClick={removeImage}
+                  onClick={() => setLogo(null)}
                 >
                   <FaTrash className="inline mr-1" />Eliminar imagen
                 </button>
               </div>
             )}
+
 
             {/* ✅ VIDEO PREVIEW AQUÍ */}
             <div className="mt-6 border-1 border-gray-300 rounded-lg p-4 text-center">
@@ -262,6 +325,8 @@ export default function CustomizationPage() {
             <input 
               type="text" 
               placeholder="Escribe tu texto aquí" 
+              value={welcomeText}
+              onChange={(e) => setWelcomeText(e.target.value)}
               className="w-full px-4 text-black py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             
@@ -311,7 +376,10 @@ export default function CustomizationPage() {
             <div className="flex max-w justify-center mt-4">
             <button 
               className="bg-white-50 ml-10 text-black shadow shadow-lg shadow-gray-600 border border-green-500 rounded-3xl hover:bg-blue-600 font-medium py-1 px-7 rounded transition"
-              onClick={applyColors}
+              onClick={() => {
+                applyColors();
+                saveToDatabase();
+              }}
             >
               Guardar
             </button>
