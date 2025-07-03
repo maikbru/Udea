@@ -1,0 +1,14 @@
+import pandas as pd
+import json
+
+# Leer el Excel original
+df = pd.read_excel("PreguntasYRespuestas.xlsx")
+
+# Seleccionar las primeras 5 preguntas
+few_shot_examples = df.head(5)[['Preguntas', 'Respuestas', 'Tema']].to_dict('records')
+
+# Guardar como JSON
+with open('few_shot_examples.json', 'w', encoding='utf-8') as f:
+    json.dump(few_shot_examples, f, ensure_ascii=False, indent=2)
+
+print("Archivo few_shot_examples.json creado con éxito!")

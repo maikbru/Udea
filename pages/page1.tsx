@@ -6,6 +6,8 @@ import { RiArchiveDrawerFill } from "react-icons/ri";
 import { useRouter } from 'next/router';
 
 export default function CustomizationPage() {
+  const [excelFile, setExcelFile] = useState<File | null>(null);
+  const [activeSection, setActiveSection] = useState<'custom' | 'upload'>('custom');
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [config, setConfig] = useState<any>(null);
@@ -26,6 +28,29 @@ export default function CustomizationPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const logoInputRef = useRef<HTMLInputElement | null>(null);
   const userMenuRef = useRef<HTMLDivElement | null>(null);
+
+  const handleExcelUpload = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!excelFile) return alert('Seleccione un archivo');
+
+  const formData = new FormData();
+  formData.append('file', excelFile);
+  const empresaId = localStorage.getItem('empresaId');
+  if (!empresaId) return alert("Empresa no identificada");
+  formData.append('empresaId', empresaId);
+
+  const res = await fetch('/api/upload-excel', {
+    method: 'POST',
+    body: formData,
+  });
+
+  const data = await res.json();
+  if (res.ok) alert('Archivo subido con éxito');
+  else alert(data.message || 'Error al subir archivo');
+};
+
+
+
 
  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
@@ -218,8 +243,8 @@ export default function CustomizationPage() {
   className={`sidebar bg-blue-600 text-white fixed top-16 left-0 h-full py-4 flex flex-col items-start transition-all duration-300 z-10 ${
     sidebarCollapsed ? 'w-16' : 'w-64'
   }`}
-  style={{ backgroundColor: '#11998e' }}
->
+  style={{ backgroundColor: '#11998e' }}>
+
   {/* Botón colapsar/expandir */}
   <button
     onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -235,9 +260,12 @@ export default function CustomizationPage() {
       </svg>
     )}
   </button>
-
+    
   {/* Botón 1 */}
-  <button className="sidebar-item flex items-center px-6 py-3 hover:bg-blue-700 transition w-full">
+  <button
+    className="sidebar-item flex items-center px-6 py-3 hover:bg-blue-700 transition w-full"
+    onClick={() => setActiveSection('upload')}
+  >
     <div className="flex items-center justify-center mr-3">
       <RiArchiveDrawerFill size={30} />
     </div>
@@ -245,7 +273,10 @@ export default function CustomizationPage() {
   </button>
 
   {/* Botón 2 */}
-  <button className="sidebar-item flex items-center px-6 py-3 hover:bg-blue-700 transition w-full">
+  <button
+    className="sidebar-item flex items-center px-6 py-3 hover:bg-blue-700 transition w-full"
+    onClick={() => setActiveSection('custom')}
+  >
     <div className="flex items-center justify-center mr-3">
       <MdColorLens size={30} />
     </div>
@@ -255,11 +286,8 @@ export default function CustomizationPage() {
 
 
       {/* Main Content */}
-      <div 
-        className={`main-content mt-16 p-8 transition-all duration-300 ${
-          sidebarCollapsed ? 'ml-20' : 'ml-64'
-        }`}
-      >
+      <div className={`main-content mt-16 p-8 transition-all duration-300 ${sidebarCollapsed ? 'ml-20' : 'ml-64'}`}>
+        {activeSection === 'custom' ? (
         <div className="max-w-4xl mx-auto">
           <div className="max-w-4xl mx-auto rounded-lg" style={{ backgroundColor: '#11998e' }}>
           <div className="flex max-w justify-center mt-4">
@@ -386,6 +414,25 @@ export default function CustomizationPage() {
             </div>
           </div>
         </div>
+        ) : (// Contenido de subida de Excel
+    <div className="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">Subir archivo Excel</h2>
+      <form onSubmit={handleExcelUpload}>
+        <input
+          type="file"
+          accept=".xlsx, .xls"
+          onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
+          className="mb-4 border p-2 rounded w-full"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Subir archivo
+        </button>
+      </form>
+    </div>)
+    }
       </div>
     </div>
   );
