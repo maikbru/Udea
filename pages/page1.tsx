@@ -4,6 +4,7 @@ import { MdColorLens } from "react-icons/md";
 import { FaChevronLeft, FaChevronRight, FaUpload, FaTrash, FaUser } from 'react-icons/fa';
 import { RiArchiveDrawerFill } from "react-icons/ri";
 import { useRouter } from 'next/router';
+import * as XLSX from 'xlsx';
 
 export default function CustomizationPage() {
   const [excelFile, setExcelFile] = useState<File | null>(null);
@@ -33,20 +34,30 @@ export default function CustomizationPage() {
   e.preventDefault();
   if (!excelFile) return alert('Seleccione un archivo');
 
-  const formData = new FormData();
-  formData.append('file', excelFile);
   const empresaId = localStorage.getItem('empresaId');
   if (!empresaId) return alert("Empresa no identificada");
-  formData.append('empresaId', empresaId);
 
-  const res = await fetch('/api/upload-excel', {
-    method: 'POST',
-    body: formData,
-  });
+  const reader = new FileReader();
+  reader.onload = async (event) => {
+    const data = new Uint8Array(event.target?.result as ArrayBuffer);
+    const workbook = XLSX.read(data, { type: 'array' });
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const jsonData = XLSX.utils.sheet_to_json(sheet);
 
-  const data = await res.json();
-  if (res.ok) alert('Archivo subido con éxito');
-  else alert(data.message || 'Error al subir archivo');
+    // Enviar JSON al backend
+    const res = await fetch('/api/upload-excel', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ empresaId, data: jsonData })
+    });
+
+    const result = await res.json();
+    if (res.ok) alert('Archivo procesado con éxito');
+    else alert(result.message || 'Error al subir el archivo');
+  };
+
+  reader.readAsArrayBuffer(excelFile);
 };
 
 
