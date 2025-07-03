@@ -32,7 +32,7 @@ def search_similar_questions(query, k=3):
     """Busca preguntas similares en el índice FAISS"""
     query_embedding = get_embedding(query).reshape(1, -1)
     distances, indices = index.search(query_embedding, k)
-    return indices[0].tolist()
+    return list(zip(indices[0], distances[0]))
 
 def format_few_shot_examples():
     """Formatea los ejemplos para el prompt"""

@@ -216,10 +216,10 @@ export default function CustomizationPage() {
           
           
           {/* Text Input */}
-          <h2 className="text-xl font-semibold text-gray-800 mt-10 mb-4">Conversación con el agente</h2>
+          <h2 className="text-xl text-black font-semibold text-gray-800 mt-10 mb-4">Conversación con el agente</h2>
 
           {/* Historial de conversación */}
-          <div className="max-h-[400px] overflow-y-auto mb-4 bg-gray-50 rounded p-4 border border-gray-200">
+          <div className="max-h-[400px] overflow-y-auto mb-4 bg-gray-50 text-black rounded p-4 border border-gray-200">
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -227,7 +227,7 @@ export default function CustomizationPage() {
                   msg.role === 'user' ? 'bg-blue-100 ml-auto text-right' : 'bg-green-100'
                 }`}
               >
-                <p className="text-sm">{msg.text}</p>
+                <p className="text-sm text-black">{msg.text}</p>
               </div>
             ))}
           </div>
@@ -240,7 +240,7 @@ export default function CustomizationPage() {
               value={currentQuestion}
               onChange={(e) => setCurrentQuestion(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleAsk()}
-              className="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow px-4 py-2 border border-gray-300 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               onClick={handleAsk}

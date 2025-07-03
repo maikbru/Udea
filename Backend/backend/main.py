@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 from SistemRAG import generate_response, search_similar_questions
 import pandas as pd
@@ -8,14 +8,14 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://udea-topaz.vercel.app"],  # Puedes cambiar a ["*"] durante desarrollo
+    allow_origins=["https://udea-topaz.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Cargar preguntas/respuestas
-df = pd.read_json("few_shot_examples.json")  # Asegúrate que exista este archivo
+df = pd.read_json("few_shot_examples.json")
 
 class QuestionRequest(BaseModel):
     question: str
@@ -23,17 +23,23 @@ class QuestionRequest(BaseModel):
 @app.post("/ask")
 def ask_question(req: QuestionRequest):
     try:
-        indices = search_similar_questions(req.question)
+        results = search_similar_questions(req.question)
+        print("Resultados FAISS:", results)
+        print("Tamaño del DataFrame:", len(df))
 
-        # Validar que los índices sean válidos
-        valid_indices = [i for i in indices if 0 <= i < len(df)]
+        # Ajustar o eliminar el threshold según los valores observados
+        threshold = 2.0
+        valid_pairs = [
+            (int(i), float(d)) for i, d in results
+            if 0 <= int(i) < len(df) and float(d) < threshold
+        ]
 
-        if not valid_indices:
+        if not valid_pairs:
             return {"respuesta": "No se encontraron respuestas relacionadas."}
 
         contexto = "\n".join([
             f"Pregunta: {df.iloc[i]['Preguntas']}\nRespuesta: {df.iloc[i]['Respuestas']}"
-            for i in valid_indices
+            for i, _ in valid_pairs
         ])
 
         respuesta = generate_response(req.question, contexto)
