@@ -15,7 +15,7 @@ app.add_middleware(
 )
 
 # Carga tu DataFrame original desde disco (donde están las preguntas/respuestas)
-df = pd.read_excel("PreguntasYRespuestas.xlsx")  # o como lo hayas guardado
+df = pd.read_json("few_shot_examples.json")  # o como lo hayas guardado
 
 class QuestionRequest(BaseModel):
     question: str
