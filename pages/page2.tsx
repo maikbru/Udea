@@ -6,6 +6,8 @@ import { RiArchiveDrawerFill } from "react-icons/ri";
 import { useRouter } from 'next/router';
 
 export default function CustomizationPage() {
+  const [currentQuestion, setCurrentQuestion] = useState('');
+  const [messages, setMessages] = useState<{ role: 'user' | 'bot'; text: string }[]>([]);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [config, setConfig] = useState<any>(null);
@@ -26,6 +28,29 @@ export default function CustomizationPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const logoInputRef = useRef<HTMLInputElement | null>(null);
   const userMenuRef = useRef<HTMLDivElement | null>(null);
+
+  const handleAsk = async () => {
+    const question = currentQuestion.trim();
+    if (!question) return;
+
+    // Mostrar pregunta del usuario
+    setMessages((prev) => [...prev, { role: 'user', text: question }]);
+    setCurrentQuestion('');
+
+    try {
+      const res = await fetch('http://localhost:8000/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      });
+
+      const data = await res.json();
+      setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
+    } catch (err) {
+      console.error('Error al consultar el backend:', err);
+      setMessages((prev) => [...prev, { role: 'bot', text: 'Error al procesar la respuesta.' }]);
+    }
+  };
 
  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
@@ -191,15 +216,39 @@ export default function CustomizationPage() {
           
           
           {/* Text Input */}
-          
-            <h2 className="text-xl font-semibold text-gray-800 mt-10 mb-4" >Ingrese pregunta inicio de chat</h2>
-            <input 
-              type="text" 
-              placeholder="Escribe tu texto aquí" 
-              //value={welcomeText}
-            //onChange={(e) => setWelcomeText(e.target.value)}
-              className="w-full px-4 text-black py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          <h2 className="text-xl font-semibold text-gray-800 mt-10 mb-4">Conversación con el agente</h2>
+
+          {/* Historial de conversación */}
+          <div className="max-h-[400px] overflow-y-auto mb-4 bg-gray-50 rounded p-4 border border-gray-200">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`mb-2 p-3 rounded-lg w-fit max-w-[80%] ${
+                  msg.role === 'user' ? 'bg-blue-100 ml-auto text-right' : 'bg-green-100'
+                }`}
+              >
+                <p className="text-sm">{msg.text}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Input y botón */}
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="Escribe tu pregunta..."
+              value={currentQuestion}
+              onChange={(e) => setCurrentQuestion(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleAsk()}
+              className="flex-grow px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            <button
+              onClick={handleAsk}
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+            >
+              Enviar
+            </button>
+          </div>
           </div>
         </div>
       </div>
