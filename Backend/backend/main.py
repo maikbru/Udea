@@ -6,12 +6,14 @@ from pydantic import BaseModel
 from SistemRAG import generate_response, search_similar_questions
 import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
+import os
+from typing import List, Literal, Optional
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://udea-topaz.vercel.app"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -45,9 +47,14 @@ def scrape_links(links):
 # Cargar preguntas/respuestas
 df = pd.read_json("few_shot_examples.json")
 
+class Message(BaseModel):
+    role: Literal['user', 'bot']
+    text: str
+
 class QuestionRequest(BaseModel):
     question: str
     empresa_id: str
+    history: Optional[List[Message]] = []
 
 @app.post("/ask")
 def ask_question(req: QuestionRequest):
@@ -65,15 +72,21 @@ def ask_question(req: QuestionRequest):
             if 0 <= int(i) < len(df) and float(d) < threshold
         ]
 
-        if not valid_pairs:
-            return {"respuesta": "No se encontraron respuestas relacionadas."}
-
-        contexto = "\n".join([
+        contexto_faiss = "\n".join([
             f"Pregunta: {df.iloc[i]['Preguntas']}\nRespuesta: {df.iloc[i]['Respuestas']}"
             for i, _ in valid_pairs
-        ])
+        ]) if valid_pairs else ""
 
-        respuesta = generate_response(req.question, contexto + scraped_context)
+        # 🔁 Construir el historial en texto plano
+        historial = ""
+        for m in req.history:
+            historial += f"{m.role.upper()}: {m.text}\n"
+        historial += f"USER: {req.question}\n"
+
+        # 🧠 Generar respuesta con todo el contexto
+        full_context = contexto_faiss + "\n" + scraped_context + "\n" + historial
+        respuesta = generate_response(req.question, full_context)
+
         return {"respuesta": respuesta}
 
     except Exception as e:

@@ -40,7 +40,7 @@ export default function CustomizationPage() {
     const res = await fetch('https://8009-190-60-59-102.ngrok-free.app/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question, empresa_id: empresaId })
+      body: JSON.stringify({ question, empresa_id: empresaId, history: messages })
     });
 
     const data = await res.json();
