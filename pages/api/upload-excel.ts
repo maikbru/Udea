@@ -14,7 +14,7 @@ const pool = new Pool({
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).json({ message: 'Método no permitido' });
 
-  const { empresaId, data } = req.body;
+  const { empresaId, data, linkPages } = req.body;
 
   if (!empresaId || !data) {
     return res.status(400).json({ message: 'empresaId o data faltante' });
@@ -22,8 +22,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     await pool.query(
-      `UPDATE empresa_config SET excel_data = $1 WHERE empresa_id = $2`,
-      [JSON.stringify(data), empresaId]
+      `UPDATE empresa_config SET excel_data = $1, link_data = $2 WHERE empresa_id = $3`,
+      [JSON.stringify(data), JSON.stringify(linkPages), empresaId]
     );
 
     res.status(200).json({ message: 'Archivo procesado y guardado exitosamente' });

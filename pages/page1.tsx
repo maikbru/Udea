@@ -12,7 +12,7 @@ export default function CustomizationPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [config, setConfig] = useState<any>(null);
-  // State for sidebar collapse
+  const [linkPages, setLinkPages] = useState<string[]>(['']);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [bgColor, setBgColor] = useState('#f8fafc');
@@ -20,12 +20,10 @@ export default function CustomizationPage() {
   const [username, setUsername] = useState('Usuario123');
   const [logo, setLogo] = useState<string | null>(null);
   const [welcomeText, setWelcomeText] = useState('');
-
+  const [linkPage, setLinkPage] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
   
-
   // Refs
-  
   const fileInputRef = useRef<HTMLInputElement>(null);
   const logoInputRef = useRef<HTMLInputElement | null>(null);
   const userMenuRef = useRef<HTMLDivElement | null>(null);
@@ -36,6 +34,9 @@ export default function CustomizationPage() {
 
   const empresaId = localStorage.getItem('empresaId');
   if (!empresaId) return alert("Empresa no identificada");
+
+  
+
 
   const reader = new FileReader();
   reader.onload = async (event) => {
@@ -49,7 +50,7 @@ export default function CustomizationPage() {
     const res = await fetch('/api/upload-excel', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ empresaId, data: jsonData })
+      body: JSON.stringify({ empresaId, data: jsonData, linkPages })
     });
 
     const result = await res.json();
@@ -59,9 +60,6 @@ export default function CustomizationPage() {
 
   reader.readAsArrayBuffer(excelFile);
 };
-
-
-
 
  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
@@ -137,7 +135,19 @@ export default function CustomizationPage() {
     localStorage.removeItem('empresaId');
     router.push('/login');
   };
+  const handleLinkChange = (index: number, value: string) => {
+    const updated = [...linkPages];
+    updated[index] = value;
+    setLinkPages(updated);
+  };
 
+  const addLink = () => {
+    setLinkPages([...linkPages, '']);
+  };
+
+  const removeLink = (index: number) => {
+    setLinkPages(linkPages.filter((_, i) => i !== index));
+  };
  //guardar datos de la empresa
   const saveToDatabase = async () => {
   const empresaId = localStorage.getItem('empresaId');
@@ -435,6 +445,33 @@ export default function CustomizationPage() {
           onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
           className="mb-4 border p-2 rounded w-full"
         />
+        <div className="mb-4">
+          {linkPages.map((link, index) => (
+            <div key={index} className="flex gap-2 mb-2">
+              <input
+                type="text"
+                value={link}
+                onChange={(e) => handleLinkChange(index, e.target.value)}
+                className="flex-grow px-4 py-2 border border-gray-300 rounded-md"
+                placeholder={`Link ${index + 1}`}
+              />
+              <button
+                type="button"
+                onClick={() => removeLink(index)}
+                className="text-red-500 font-bold"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addLink}
+            className="text-blue-600 underline text-sm"
+          >
+            + Agregar otro link
+          </button>
+        </div>
         <button
           type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
