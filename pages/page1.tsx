@@ -443,16 +443,17 @@ export default function CustomizationPage() {
           type="file"
           accept=".xlsx, .xls"
           onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
-          className="mb-4 border p-2 rounded w-full"
+          className="mb-4 text-black border p-2 rounded w-full"
         />
         <div className="mb-4">
+          <h2 className='text-2xl font-bold text-black mb-3'>Links de alimentación</h2>
           {linkPages.map((link, index) => (
             <div key={index} className="flex gap-2 mb-2">
               <input
                 type="text"
                 value={link}
                 onChange={(e) => handleLinkChange(index, e.target.value)}
-                className="flex-grow px-4 py-2 border border-gray-300 rounded-md"
+                className="flex-grow px-4 text-black py-2 border border-gray-300 rounded-md"
                 placeholder={`Link ${index + 1}`}
               />
               <button
