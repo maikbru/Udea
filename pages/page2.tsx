@@ -30,27 +30,27 @@ export default function CustomizationPage() {
   const userMenuRef = useRef<HTMLDivElement | null>(null);
 
   const handleAsk = async () => {
-    const question = currentQuestion.trim();
-    if (!question) return;
+  const question = currentQuestion.trim();
+  if (!question || typeof empresaId !== 'string') return;
 
-    // Mostrar pregunta del usuario
-    setMessages((prev) => [...prev, { role: 'user', text: question }]);
-    setCurrentQuestion('');
+  setMessages((prev) => [...prev, { role: 'user', text: question }]);
+  setCurrentQuestion('');
 
-    try {
-      const res = await fetch('https://8009-190-60-59-102.ngrok-free.app/ask', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question, empresaId })
-      });
+  try {
+    const res = await fetch('https://8009-190-60-59-102.ngrok-free.app/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, empresa_id: empresaId })
+    });
 
-      const data = await res.json();
-      setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
-    } catch (err) {
-      console.error('Error al consultar el backend:', err);
-      setMessages((prev) => [...prev, { role: 'bot', text: 'Error al procesar la respuesta.' }]);
-    }
-  };
+    const data = await res.json();
+    setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
+  } catch (err) {
+    console.error('Error al consultar el backend:', err);
+    setMessages((prev) => [...prev, { role: 'bot', text: 'Error al procesar la respuesta.' }]);
+  }
+};
+
 
  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
