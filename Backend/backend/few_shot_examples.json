@@ -1,227 +1,127 @@
 [
   {
-    "Preguntas": "¿Qué son las Sociedades Fiduciarias?",
-    "Respuestas": "Las Sociedades Fiduciarias son entidades de servicios financieros, constituidas como sociedades anónimas, sujetas a la inspección y a la vigilancia permanente de la Superintendencia Financiera de Colombia. Son profesionales en la gestión de negocios, transacciones u operaciones por cuenta de terceros. Reciben mandatos de confianza, los cuales se desarrollan con el objeto de cumplir una finalidad específica, siendo, a la vez, asesores de sus clientes. ¿Cuáles son las clases de fiducias más conocidas en el mercado?\n\nFondos de Inversión Colectiva – FIC: Carteras Colectivas.\nEn fideicomisos de administración: La fiducia en garantía, la fiducia de administración y pagos y la fiducia de titularización sobre bienes inmuebles y muebles.\nEn fideicomisos inmobiliarios: La fiducia de titularización de inmuebles o de proyectos de construcción y la fiducia inmobiliaria.\nFiducia Pública: actúa como fideicomitente una entidad de derecho público que transfiere o entrega uno o más bienes a una entidad fiduciaria para que cumpla la finalidad de interés público pretendida por el constituyente y se encuentran sujetos a lo dispuesto en el Estatuto General de Contratación de la Administración Pública.",
-    "Tema": "Preguntas de Fiduciaria estructurada"
+    "Preguntas": "SOLICITUD DE USUARIO EN ALISSTA",
+    "Respuestas": "Para hacer una solicitud de creación de usuario usted debe realizar los siguientes pasos:\n1. Ingrese a la Url www.alissta.gov.co\n2.  De clic en la opción \"Solicite su usuario aquí\"\n3. Seleccione el Rol MIPYME que tendrá dentro del sistema\n4. Diligencie el formulario, tenga en cuenta que el usuario que vaya a registrar debe estar afiliado a la ARL POSITIVA por parte de la empresa como DEPENDIENTE y  las respuestas a las preguntas de seguridad diferencian entre mayúsculas, minúsculas, números y caracteres especiales.\n5. De clic en el botón \"Crear usuario\"\n6. Recuerde ingresar un correo electrónico válido, allí se le enviará la clave temporal para el ingreso y aprobación de Términos y Condiciones.",
+    "Tema": "SOLICITUD DE USUARIO EN ALISSTA"
   },
   {
-    "Preguntas": "¿Cuál es la responsabilidad de las sociedades fiduciarias?",
-    "Respuestas": "Las sociedades fiduciarias responden hasta de culpa leve en el desarrollo de sus gestiones. La culpa leve ha sido definida por la ley como la culpa en que incurre quien no emplea en los negocios que se le encargan la misma diligencia y el cuidado que cualquier persona, en circunstancias normales, emplearía al manejar sus negocios propios.",
-    "Tema": "Preguntas de Fiduciaria estructurada"
+    "Preguntas": "SOLICITUD USUARIO ROL ASESOR SST",
+    "Respuestas": "Para hacer una solicitud de creación de usuario usted debe realizar los siguientes pasos: \n1. Ingrese a la Url www.alissta.gov.co\n2.  De clic en la opción \"Solicite su usuario aquí\"\n3. Seleccione el Rol ASESOR SST que tendrá dentro del sistema\n4. Diligencie el formulario, tenga en cuenta  DESCARGAR el FORMATO DE AUTORIZACIÓN que el usuario vaya a diligenciar con la empresa que asesora.\n5. Cuando ingrese la fecha Inicio y Fecha Fin, tenga en cuenta que como limite es un año de autorización\n6. Seleccione las preguntas de seguridad y recuerde anotarlas en un lugar seguro y finaliza dando clic en el botón \"Crear usuario\"\n7. Recuerde ingresar un correo electrónico válido, allí se le enviará la clave temporal para el ingreso y aprobación de Términos y Condiciones.\n\nNOTA: Para el caso de las empresas donde el primer usuario es el Rol Representante Legal y otros, el tiempo máximo de aprobación por parte del administrador del riesgo de la zona por Positiva es de 24 horas.",
+    "Tema": "SOLICITUD USUARIO ROL ASESOR SST"
   },
   {
-    "Preguntas": "¿Cuál es la diferencia entre Encargo Fiduciario y Fiducia Mercantil?",
-    "Respuestas": "En el Encargo Fiduciario, el fideicomitente conserva la propiedad de los bienes entregados a la fiduciaria. Se trata de una simple administración de los bienes, sin transferencia de la propiedad. Por otro lado, en el contrato de Fiducia Mercantil el fideicomitente se desprende de la propiedad de los bienes que entrega, sacándolos de su patrimonio. Estos bienes entran a conformar un Patrimonio Autónomo, que es administrado por la sociedad fiduciaria.",
-    "Tema": "Preguntas de Fiduciaria estructurada"
+    "Preguntas": "INGRESO A LA PLATAFORMA",
+    "Respuestas": "URL para ingresar a la herramienta Alissta es www.alissta.gov.co \n\n1. Ingrese a la Url www.alissta.gov.co\n2.  Ingrese el NIT de su empresa sin dígito de verificación( Digite documento del empleador) \n3. Ingrese la cédula registrada en (Dígite documento del usuario)\n4. Ingrese la clave que le llego al correo; le sugiero que le de copiar desde el correo y la pega directamente en la plataforma para que evite errores de digitación\n5. De clic en el botón \"INGRESAR\"\n6. Recuerde al ingresar le va a pedir que asigne una clave nueva, por lo que deberá escoger una clave que cuente con legras mayúsculas, minúsculas, números y dígitos especiales como: *-+?$·%& escoja el que sea mas fácil de recordar para usted.",
+    "Tema": "INGRESO A LA PLATAFORMA"
   },
   {
-    "Preguntas": "¿Qué partes intervienen en la fiducia?",
-    "Respuestas": "En la Fiducia intervienen tres partes, a saber: el Fideicomitente que es la persona natural o jurídica, que encomienda a la fiduciaria una gestión determinada sobre uno o varios de sus bienes, para el cumplimiento de una finalidad; el Fiduciario que son las Sociedades Fiduciarias autorizadas por la Superintendencia Financiera de Colombia; y el Beneficiario que es la persona en cuyo provecho se desarrolla la fiducia y se cumple la finalidad perseguida. El beneficiario puede ser el mismo fideicomitente.",
-    "Tema": "Preguntas de Fiduciaria estructurada"
+    "Preguntas": "AUTOEVALUACIÓN DE ESTÁNDARES MÍNIMOS.",
+    "Respuestas": "Para realizar la Autoevaluación de Estándares mínimos conforme a la Resolución 0312 del 2019, debe realizar los siguientes pasos: \n1. Ingresar al módulo Planificación - Evaluación SG-SST.\n2. Dar clic en la pestaña \"Estándares mínimos SGSST\"\n3. Dirigirse a la segunda sección \"CREAR EVALUACIÓN DE ESTÁNDARES MÍNIMOS – RESOLUCIÓN 0312 DE 2019\" dentro de la misma pantalla.\nNOTA: Es importante que tenga presente que esta constancia la puede descargar las veces que sea necesario, pero la información registrada no podrá cambiarla ni eliminarla luego de generada la constancia. Por otra parte, se debe hacer en vigencia de acuerdo con el periodo de Gestión terminado, es decir, si está en periodo de gestión 2020 la evaluación que va a calificar es la del periodo 2019.\n4. De acuerdo con el número de trabajadores, a la actividad económica y al nivel de Riesgo seleccione el capítulo de la Resolución 0312/19 (Capítulo I, II o III) y seguidamente dar clic en el botón \"Crear Evaluación\".\n5. Una vez creada la evaluación esta se visualizará en la primera sección \"INFORMACIÓN DE EVALUACIONES\", allí deberá hacer clic en el botón \"Continuar Evaluación\".\n6. En la siguiente pantalla se visualizarán los 4 ciclos Planear, Hacer, Verificar y Actuar.\n7. El usuario debe seleccionar cada ciclo lea la información del ítem y al final podrá seleccionar la calificación para cada una de las preguntas, en caso de \"no cumplir\" debe registrar el plan de mejora; donde le solicitarán fecha de cierre, responsable y metodología.\n8. Al finalizar cada ciclo debe dar clic en el botón \"Guardar y Terminar ciclo\"\n9. Una vez terminados todos los ciclos la Autoevaluación queda en estado finalizado.\n10. Una vez complete correctamente la Autoevaluación podrá cerrarla a través del icono \"Cerrar evaluación\" que tiene forma de candado, siempre y cuando no exista una evaluación cerrada para la vigencia de la evaluación.\n11. Una vez tenga estado el \"Cerrado\" el sistema visualiza una pestaña adicional llamada \"Reporte ARL\", donde podrá hacer el respectivo trámite.\nIngrese en la opción \"Reportar ARL\"\nEn acciones se encuentra la opción \"Iniciar Reporte\"; en la parte inferior encontrara un cuadro con el Plan de Mejora que identificó al momento de realizar la evaluación de Estándares Mínimos. Allí podrá definir recursos y soportes de efectividad.\nNOTA: En el caso que la empresa al calificar la Autoevaluación de Estándares Mínimos todo lo calificó en \"Cumple Totalmente\" no tendrá que definir ni recursos ni soportes de efectividad ya que no tendrá PLAN DE MEJORA.\nEn acciones encontrará el botón para \"Guardar\" el Plan de Mejora.\nPara finalizar con el reporte de clic en botón \"NOTIFICAR RESULTADO DE AUTOEVALUACIÓN DE ESTÁNDARES MÍNIMOS Y PLAN DE MEJORA A LA ARL\"\n12. Recuerde que para generar la constancia es importante que antes tengas la evaluación de Estándares Mínimos de SG-SST esté en estado CERRADO; también haber realizado el reporte a la ARL\nAhora al ingresar a la pestaña GENERAR CONSTANCIA, se refleja en estado \"NO GENERADA\", en acciones dar clic el icono GENERAR CONSTANCIA y al finalizar encontrará en la columna de ACCIONES el icono para descargar la constancia.",
+    "Tema": "AUTOEVALUACIÓN DE ESTÁNDARES MÍNIMOS."
   },
   {
-    "Preguntas": "¿Qué es fiducia?",
-    "Respuestas": "La palabra fiducia significa fe, confianza. Es un mecanismo mediante el cual una persona natural o jurídica hace entrega de una suma de dinero o de unos bienes muebles o inmuebles a una Fiduciaria para que esta desarrolle una gestión específica de inversión, administración, recaudo o garantía. Dicha gestión puede realizarse en provecho de sí mismo o de otra persona. Por esta labor la Fiduciaria recibe una remuneración llamada comisión.",
-    "Tema": "Preguntas de Fiduciaria estructurada"
+    "Preguntas": "GENERAR CONSTANCIA ACCIDENTALIDAD/ SINIESTRALIDAD/ RIESGOS LABORALES",
+    "Respuestas": "1. Ingresar con su usuario creado en ALISSTA al módulo - Medición y evaluación SG SST/ Reportes y estadísticas/ constancia riesgo laborales\n2. Seleccione:\n   * Vigencia \n    *Años anteriores \n*Tipo de constancia\n*Información a incluir.\n3. De clic en la opción Generar. El sistema hará una previsualización de la constancia de riesgos laborales.\n4. En la parte inferior de la página de clic en la opción \"DESCARGAR PDF\".",
+    "Tema": "GENERAR CONSTANCIA ACCIDENTALIDAD/ SINIESTRALIDAD/ RIESGOS LABORALES"
   },
   {
-    "Preguntas": "¿Cuál es el régimen prestacional de los docentes que fueron afiliados al FNPSM con vinculación Municipal Recursos Propios, Cofinanciados o Financiados mediante Circular 08?, debido a que en la Secretaria de Educación no reposa información de la certificación dada por los alcaldes de ese entonces ni la forma de establecer el régimen prestacional a fin de unificar criterios y reportar cesantías para pago de intereses si tienen el derecho?",
-    "Respuestas": "Todos los docentes afiliados al fondo por circular 08 son de régimen de anualidad de cesantías, por lo tanto, debe hacerse el reporte para pago de intereses.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "COMO GENERAR LA INVESTIGACIÓN DE UN ACCIDENTE DE TRABAJO",
+    "Respuestas": "1. Ingrese en Reporte e Investigación - Consulta de AT\n2. Seleccione:\n    Vigencia *\n    Fecha de reporte del AT inicial *\n    Fecha de reporte del AT Final *\n3. En acciones encontrará el botón para iniciar investigación\n4. Diligencie toda la información que pide el sistema\nNOTA: En caso de no contar con datos el sistema le permite guardar hasta donde llegue y la investigación quedará en estado (EN INVESTIGACIÓN)\nPero cuando finalice quedará en estado (INVESTIGADO)",
+    "Tema": "COMO GENERAR LA INVESTIGACIÓN DE UN ACCIDENTE DE TRABAJO"
   },
   {
-    "Preguntas": "Un docente que termina un cargo en provisionalidad y pasa a periodo de prueba, ¿Debe realizar el cobro de las cesantías hasta la fecha de nombramiento en periodo de prueba?",
-    "Respuestas": "Cuando el docente pasa de provisional a periodo de prueba sin interrupción, no es necesario que tramite su cesantía definitiva.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "AUSENTISMO LABORAL",
+    "Respuestas": "Para registrar el AUSENTISMO LABORAL, por favor realizar los siguientes:\n1. Ingrese mediante la siguiente ruta al Módulo Planificación > Ausentismo Laboral > Registrar Ausentismo.\n2. Diligenciar el número de identificación del trabajador y da clic en la opción “Buscar”, de esta manera el aplicativo automáticamente cargará la información correspondiente a Dpto. Municipio, Nombre del Trabajador, Genero, Tipo de Vinculación, EPS y Salario, posterior a esto podrá dar Clic en la opción “Nueva Ausencia” o “Prorroga”, según sea el caso.\nNOTA: Posterior a ingresar los datos generales el usuario podrá seleccionar la opción “Nueva Ausencia” o “Prorroga”.\n3. Seleccionar el tipo de contingencia, indicar fecha de inicio y fecha fin del ausentismo, de esa manera la plataforma automáticamente cargará los Días de Ausencia y Valor del ausentismo, posteriormente seleccionar el proceso al que pertenece el trabajador y finalmente dar clic en la opción “Guardar” para finalizar el registro.\n4. Previo al registro, debe seleccionar el tipo de contingencia de acuerdo a las opciones habilitadas en la lista desplegable.",
+    "Tema": "AUSENTISMO LABORAL"
   },
   {
-    "Preguntas": "En expedientes radicados y enviados para estudio a Fiduprevisora en el año 2006, se indica que en algunas de las cesantías parciales debe actualizarse el tope de reparación con el valor aprobado para 2007. ¿Esto qué significa?",
-    "Respuestas": "Debe actualizarse con el tope de 2007, teniendo en cuenta que la solicitud fue radicada y enviada para estudio en el año 2006. El tope que se asigna es el del año en que Fiduprevisora estudia la prestación. Si estos expedientes fueron estudiados por fiduciaria en el 2007 ese es el valor a reconocer siempre y cuando el saldo de cesantías del docente le alcance y el valor solicitado sea mayor que ese tope.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "COMO GENERAR MAPA DE PROCESOS",
+    "Respuestas": "Para crear el mapa de procesos de su empresa, por favor aplique los siguientes pasos:\n1. Para iniciar el procedimiento debe dar clic en el módulo EMPRESA, sub modulo GOBIERNO ORGANIZACIONAL y seleccionar MAPA DE PROCESOS.\n2. Seleccione la opción CREAR\n3. Debe de ingresar su primer proceso en la parte derecha en la opción PROCESO (este luego se convertirá en un proceso padre)\nLuego seleccione la opción GUARDAR PROCESO.\n4. Luego selecciona su proceso padre en la lista desplegable y el proceso que va ligado con este y da clic en guardar proceso.\n5. Le registrara de manera automática su lista de procesos, incluyendo el proceso padre y el proceso.\n6. De clic en la opción Ver mapa de proceso que se encuentra en la parte inferior, Encontraremos todos nuestros procesos de manera gráfica.\n7. En la parte inferior el sistema le da 3 opciones:\nREGRESAR: El cual nos permite volver a la página inicial\nAGREGAR PROCESO: Nos permite ingresar un nuevo proceso para nuestro mapa.\nLISTADO DE PROCESOS: Podemos seleccionar la opción listado de procesos.\n8. En la fila de la derecha encontramos la opción de acciones.\nEditar: para modificar el proceso padre y el proceso.\nEliminar: Para borrar procesos",
+    "Tema": "COMO GENERAR MAPA DE PROCESOS"
   },
   {
-    "Preguntas": "¿Puedo solicitar la certificación del pago de cesantías parciales y definitivas? ¿Puedo solicitar la expedición de copias de la resolución?",
-    "Respuestas": "Fiduprevisora S.A., como administrador de los recursos del Fondo Nacional de Prestaciones Sociales del Magisterio, no es la entidad competente para expedir copias de esta clase de documentos. La entidad encargada de ello es la Secretaria de Educación del departamento al cual pertenece el educador. Es importante señalar que una vez efectuados los trámites de las solicitudes de prestaciones económicas por parte de esta entidad, el expediente es remitido a la Secretaria de Educación para que se custodie en los archivos de esa entidad.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "COMO HACER LA RECLASIFICACIÓN DE LA EMPRESA",
+    "Respuestas": "Ingrese al portal transaccional con su usuario y contraseña. Luego, dirigirse al módulo promoción y prevención. selecciona \"solicitud de reclasificación\". selecciona \"continuar\" para ser direccionado a Alissta SSUM. Luego diligencie la información y por último adjunte a la solicitud\n1. Copia legible de representante legal.\n2. RUT con las actividades económicas a reclasificar.\n3. Cámara de comercio actualizada no mayor a 3 meses\nY selecciona ENVIAR.",
+    "Tema": "COMO HACER LA RECLASIFICACIÓN DE LA EMPRESA"
   },
   {
-    "Preguntas": "¿Es posible el traslado de cesantías al Fondo Nacional de Ahorro?",
-    "Respuestas": "No procede. Por disposición legal deben estas administrarse por el Fondo Nacional de Prestaciones Sociales del Magisterio.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "COMO GENERAR EL AVANCE PLAN DE MEJORA",
+    "Respuestas": "Para hacer el reporte Avance del Plan de Mejora debe validar antes lo siguiente:\n* Primero debe tener el reporte a la ARL realizado.\n* Segundo contar con las observaciones por parte de la ARL.\n1. Ingrese al módulo Planificación - Evaluación SG-SST - Avance Plan de mejora.\n2. Para iniciar el informe verifique en acciones la opción \"Realizar informe de Avance\"\n3. En acciones encontrará el botón por el cual podrá indicar el % de avance de dicho cumplimiento y la descripción para \"GUARDAR AVANCE\"\n4. Cuando la(s) actividad(es) del estándar mínimo alcance el 100% de avance, el sistema habilita la opción de cargar evidencias en formato .ZIP/.RAR con un tamaño máximo de hasta 6 MB.\n5. Una vez terminado el registro del informe de avance del Plan de Mejoramiento, el sistema muestra un cuadro resumen antes de realizar el reporte definitivo a POSITIVA COMPAÑÍA DE SEGUROS S.A., con el fin de verificar el correcto diligenciamiento. En los casos que se desee realizar edición de los avances, el usuario selecciona en la opción \"EDITAR\"\n6. Una vez realizado el reporte a la ARL del informe de avance plan de mejoramiento, POSITIVA COMPAÑÍA DE SEGUROS S.A. le entrega su acuse de recibido, el cual puede descargar en la opción \"DESCARGAR\"",
+    "Tema": "COMO GENERAR EL AVANCE PLAN DE MEJORA"
   },
   {
-    "Preguntas": "¿Porqué en algunos casos para efecto de pago Cesantías Definitivas con saldos al FNA, se exige el paz y salvo, y porque en otras ocasiones se gira el total de cesantías a la entidad, sin tener en cuenta que la deuda es inferior?",
-    "Respuestas": "Todo docente nacional que tenga pignoradas las cesantías al FNA cuando solicite un pago parcial o definitivo, su pago saldrá a favor del FNA, así quedó establecido en las actas de cruce de cuentas entre FNPSM y FNA.\n\nCon el fin de no pagar al FNA, debe remitirse en la solicitud a través de la Secretaria de Educación el documento de paz y salvo junto con el expediente.\n\nSi no está a paz y salvo pero la deuda es inferior, debe demostrarse dicha situación en el expediente y la Secretaria de Educación debe dejarlo registrado en el acto administrativo, a fin de girar el valor correspondiente al FNA y el saldo al educador.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "PLAN ANUAL DE LA EMPRESA",
+    "Respuestas": "Para registrar el plan de trabajo anual de la empresa:\n1. Ingrese al Módulo Planificación, Plan de Trabajo Anual y seleccione la opción Plan de Empresa.\n2. El Plan de Trabajo lo debe crear por periodos máximos de doce (12) meses. Debe diligenciar los siguientes campos obligatorios para la creación: Sede, periodo y vigencia.\n\nNOTA: En la opción SEDE: Debe crear previamente las sedes en el Módulo Empresa. Recuerde que puede crear más de un Plan de Trabajo por sede.        VIGENCIA: En los casos que el periodo contemple un (1) solo año, la vigencia es definida automáticamente por el sistema.\n\n3. Antes de finalizar con la creación de la actividad, recuerde diligenciar los campos obligatorios marcados con el * (Descripción del objetivo, Metas, Actividad, Responsable, Fecha de Programación, Hora Inicial, Hora Final)\n4. En este listado encontrara el plan de trabajo creado con su respectivo Objetivo, Recursos, Cronograma anual, Porcentaje de Ejecución y sus respectivas actividades, que pueden ser corregidas en los siguientes botones del campo Acciones.\n5. En el campo Acciones puede editar, Reprogramar la actividad general, sin generar afectación en la programación del Cronograma. También puede eliminar el registro de la programación total de la actividad.\n6. El sistema le permite editar y eliminar las actividades específicas registras para cada mes de manera individual. Permite visualizar el historial de la actividad. Entiéndase como historial los diferentes estados de la actividad (programada, reprogramada y ejecutada) cada estado se identifica con su convención de colores.\n\n *Nota: Al finalizar las actividades generales y específicas, en la opción Descargar hoja de Cálculo puede descarga el \n       Cronograma del plan de trabajo anual.\nEn este campo puede adjuntar y visualizar la firma del Representante Legal y del Responsable SGSST.\n       *Nota:  ALISSTA NO HACE VALIDACIÓN DE LOS ARCHIVOS CARGADOS O VERIFICACIÓN QUE REALMENTE SON LAS      \n       FIRMAS DE ESTOS RESPONSABLES EN SU EMPRESA. ESTA INFORMACIÓN ES RESPONSABILIDAD DE LA EMPRESA Y SUS USUARIOS.",
+    "Tema": "PLAN ANUAL DE LA EMPRESA"
   },
   {
-    "Preguntas": "Hay expedientes de varios docentes negados cuya observación es: No se anexó expediente acto administrativo de retiro por el periodo de provisionalidad, el cual no existe ya que la secretaria no hizo decretos de terminación del periodo provisional sino que los nombró automáticamente en periodo de prueba porque pasaron el concurso ¿Esto qué significa?",
-    "Respuestas": "Si no hay acto administrativo de retiro no debe tramitarse la cesantía definitiva.\n\nEn estos casos se entiende que el docente cambia de nombramiento y no se retira del servicio.\n\nDebe validarse la forma como la secretaria de educación está motivando los actos administrativos de cambios de nombramiento para evitar el trámite de las cesantías definitivas.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "MATRIZ DE PELIGROS Y RIESGOS ",
+    "Respuestas": "Para la identificación de peligros, evaluación y valoración de peligros y riesgos, ALISSTA dispone de tres (3) Metodologías sistemáticas conforme a lo definido por cada autor: GTC 45/2012, RAM e INSHT.\n\nPara la Norma Técnica Colombiana - GTC 45/2012, el sistema de ALISSTA, tiene dos opciones: \na. Formulario de cargue directo en el sistema.\nb. Cargue masivo de las matrices en la planilla de hoja de calculo. \n\n1. En la opción de “Seleccionar Metodología”, seleccione en los filtros la sede y la metodología GTC 45/2012, se pueden utilizar filtros para generar el registro individual de cada peligro y la valoración del riesgo.\n\nNOTA: Previamente en el menú de la ruta Empresa >Datos Generales > Sede, podrá agregar las sedes de su empresa.\n\n2. Para la opción de Cargue Masivo se dirige a la opción del menú \"CARGUE MASIVO\", y allí encontrará un botón para \"DESCARGAR PLANTILLA DE CARGUE\".\n\n- Tenga presente no modificar nada del diseño de la plantilla solo ingrese datos y guarde para subir la información.",
+    "Tema": "MATRIZ DE PELIGROS Y RIESGOS "
   },
   {
-    "Preguntas": "¿Los entes territoriales que vincularon docentes cofinanciados a través de convenios en virtud del decreto 196/95, deben liquidar las cesantías de estos educadores con el régimen retroactivo o necesariamente por su condición de cofinanciados son de carácter anualizado?",
-    "Respuestas": "Generalmente todos los docentes cofinanciados o financiados son de régimen nacional por haber sido nombrados después de 1990, en consecuencia todos tienen anualidad de cesantías. Sin embargo para estar seguro del régimen a aplicarse debe revisar el convenio de afiliación y los anexos para determinar cuál fue el régimen que certificó el ente territorial y como se liquidó el pasivo.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "AUTOREPORTE CONDICIONES DE SALUD",
+    "Respuestas": "Para realizar la convocatoria a los empleados, debe ingresar por medio de la ruta y rol Responsable SGSST y/o Mipyme. Se cuenta con 6 cuestionarios disponibles que son:\n- Perfil socio demográfico - Datos Personales\n- Hábitos\n- Antecedentes de Salud\n- Enfermedades Crónicas no transmisibles \n- Actividad Física\n-Cuidado del hogar y tiempo libre.\n\n1. Ingresa a través de la ruta al Módulo PLANIFICACIÓN > Dx. Gnal Condiciones de Salud > Gestión Auto reporte de salud\n2. Dar clic en el Botón \"GENERAR AUTO-REPORTE DE SALUD\"\n3. Asignar un NOMBRE a la CONVOCATORIA\n4. Escoger vigencia Actual\n5. Seleccionar las estadísticas. Recuerde que el cuestionario de Datos Generales, irá vinculado de manera automática independientemente si escoge un (1) cuestionario o todos. Y se da clic en el botón \"Generar Aplicación\"\n6. Se escoge la opción en la cual quiere hacer la convocatoria, se puede hacer por cargos, manualmente y/o cargue masivo. \n7. Se puede verificar en la pestaña \"Ver Convocados\" y también en \"Ver Convocados por LINK Publico\"\n8. En la siguiente pestaña se podrá personalizar el texto del correo electrónico de invitación a participar en el Auto reporte de Condiciones de Salud a los trabajadores. Tenga en cuenta configurar la fecha de envío de los correos electrónicos a los trabajadores Invitados.\n\nNOTA: Para los casos donde el trabajador no tenga acceso a un correo electrónico para recibir la invitación a participar en el Auto reporte, se tiene la funcionalidad de ingreso a través de LINK PÚBLICO, el cual puede copiar e ingresar en un navegador con acceso a internet.",
+    "Tema": "AUTOREPORTE CONDICIONES DE SALUD"
   },
   {
-    "Preguntas": "¿En qué eventos el Fondo Nacional de Prestaciones Sociales del Magisterio paga cesantías parciales?",
-    "Respuestas": "Para liberación de hipoteca, compra de vivienda, construcción y remodelación o reparación de vivienda de propiedad del educador o de su cónyuge.\n\nLa ley 1071/06, se autorizó cesantías para estudios.",
-    "Tema": "Preguntas relacionadas con cesantías - Fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "ORGANIGRAMA",
+    "Respuestas": "Para crear el organigrama de su empresa, por favor aplique los siguientes pasos:\n\n1. Damos clic en el modulo empresa, luego sub modulo gobierno organizacional y organigrama\n2. Damos clic en al opción crear\n3. Debe crear el primer Cargo al lado derecho en la opción cargo empleado, luego dar Clic en guardar cargo\n4. Para construir su organigrama debe seleccionar una Cargo de jefe, lo cuales debe crear usted como se muestra en la diapositiva anterior , luego empezar a seleccionar cada uno de los cargos de los empleados que dependen de ese jefe y luego dar Clic en guardar Cargo.\n5. Cuando haya creado todos los cargos puede dar clic en la opción Lista de cargos\n6. Selecciona la opción Ver organigrama que se encuentra en la parte inferior , Podrá Visualizar dentro de un organigrama los cargos que ha creado\n",
+    "Tema": "ORGANIGRAMA"
   },
   {
-    "Preguntas": "¿A qué se refiere expediente cuando nos referimos al trámite de prestaciones económicas?",
-    "Respuestas": "El expediente está conformado por la solicitud del docente en relación con el reconocimiento y pago de una prestación económica, los documentos que se aportan y anexan a la solicitud y el proyecto de acto administrativo que elabora la correspondiente Secretaría de Educación.\n\nSobre estos documentos es que Fiduprevisora realiza la revisión que culmina en aprobación o  improbar el proyecto de acto administrativo que reconoce la prestación del docente y se señalan las observaciones para corrección o modificación del proyecto de acto administrativo.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "BATERIA RIESGO PSICOSOCIAL",
+    "Respuestas": "Ingrese a Aplicación > Batería Riesgo Psicosocial > Gestionar Batería Psicosocial\nGeneralidades\nPara realizar el proceso de diagnóstico de riesgo psicosocial, se debe seleccionar las herramientas a utilizar con sus trabajadores de acuerdo con:\n• Cuestionario Intralaboral Forma A\n\n• Cuestionario Intralaboral Forma B\nEs importante aclarar que cada cuestionario lleva implícito el diligenciamiento de la ficha de datos generales\n\nEste módulo solo puede ser utilizado por psicólogos con posgrado en salud ocupacional, con licencia vigente de prestación de servicios en psicología ocupacional\nCada aplicación de cuestionario puede tener tres estados disponibles: 1. Convocatoria - Inactivo, 2. Activo, 3. Finalización. Los estados se necesitan para administrar la interacción de Alissta con el usuario de cada uno de los cuestionarios, por ejemplo: si el usuario de Alissta requiere que no se incluyan más diligenciamientos que afecten el resultado general de la aplicación. Si necesita conocer la descripción de estos estados en la parte inferior de esta ayuda encontrará la información\nNOTA: Señor empleador recuerde que la aplicación de las baterías de riesgos psicosocial requiere el diligenciamiento del consentimiento informado de sus trabajadores debidamente firmado. La aceptación en el aplicativo ALISSTA no lo exime.\nCrear una aplicación de cuestionario\nPara crear una aplicación de cuestionario presione NUEVA APLICACIÓN DE CUESTIONARIO\nAPLICACIONES DE CUESTIONARIOS ACTIVOS O EN CONVOCATORIA\nLa primera tabla muestra al usuario las aplicaciones que se encuentran en estado Activo o en Convocatoria\n\nAPLICACIONES DE CUESTIONARIOS FINALIZADOS\nLa segunda tabla muestra al usuario las aplicaciones que se encuentran en estado Finalizado\nLista de columnas de las tablas de gestión de baterías\nNombre: nombre del cuestionario(s) que van a realizar los convocados\nEstado: Estado de la aplicación del cuestionario, existen 3 estados disponibles: Convocatoria - Inactivo, Activo - Aplicación en curso y Finalización - Inactivo\nFecha de Registro: fecha cuando fue creada la aplicación\nFecha Finalización: fecha cuando se cambia la aplicación al estado Finalización - Inactivo\ncuestionarios Finalizados / Planeados: relación de cuestionarios que han finalizado sobre los cuestionarios planeados\nProgreso: porcentaje de progreso de la aplicación su máximo valor es de 100%\n\nOpciones de cada aplicación\nConfigurar: Si presiona este botón el usuario puede dirigirse a una página donde puede cambiar el estado de la aplicación\nAdministración de usuarios: Si presiona este botón el usuario puede dirigirse a una página donde puede revisar los resultados de los cuestionarios, eliminar usuarios o reenviar correo\nConvocar Usuarios: Si presiona este botón el usuario puede dirigirse a una página donde puede invitar y enviar correos a personas para realizar el cuestionario\nEliminar Aplicación: Si presiona este botón el usuario puede eliminar una aplicación de cuestionario, si la aplicación posee cuestionarios terminados no se permite la eliminación de la aplicación\nResultado General: Si presiona este botón el usuario puede ver los resultados generales de la aplicación del cuestionario si su estado es 'Finalizado'\nGestionar Descargas: Si presiona este botón El usuario puede gestionar la descarga del archivo en Excel.\n\nFiltrar aplicaciones de baterías\nEl usuario puede filtrar las aplicaciones de baterías mediante dos parámetros: fecha de registro y el tipo de batería, luego seleccionar los filtros deseados haga clic en BUSCAR para realizar la búsqueda y mostrar los resultados. Si no existen filtros diligenciados el sistema mostrará todos los registros\n\nLista de estados de una aplicación\n\n1.Convocatoria - Inactivo: Si la aplicación del cuestionario se encuentra inactivo, los usuarios no podrán ingresar a realizar el diligenciamiento, marque este estado si desea planear la aplicación del cuestionario y convocar personas para su posterior diligenciamiento\n2.Activo - Aplicación en curso: Si la aplicación del cuestionario se encuentra activo, los usuarios pueden diligenciar el cuestionario\n3.Finalización - Inactivo: Si la aplicación del cuestionario se encuentra finalizado, los usuarios no pueden diligenciar el cuestionario y se habilitará al usuario de Alissta para ver los resultados de los cuestionarios",
+    "Tema": "BATERIA RIESGO PSICOSOCIAL"
   },
   {
-    "Preguntas": "¿En donde radico mi solicitud de Prestación Económica?",
-    "Respuestas": "En la Secretaria de Educación a la cual pertenece o presta los servicios.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "REENTRENAMIETO EN ALTURAS ",
+    "Respuestas": "\n1.\tIngresar con su usuario creado en ALISSTA al módulo - Organización / Competencias SST/ Reentrenamiento Alturas\n 2.  Seleccione: *Tipo de documento\n 3.  Ingrese: *Documento del colaborador *Consultar * Diligenciar la               información \n4.  Generar reporte.",
+    "Tema": "REENTRENAMIETO EN ALTURAS "
   },
   {
-    "Preguntas": "No me enteré del pago de mi prestación, ¿Qué hago para cobrar?",
-    "Respuestas": "El pago de la prestación estará disponible en el banco para cobro del beneficiario reconocido 30 días contados a partir de la fecha de pago en el banco BBVA y 45 días en BANCO AGRARIO, después de esta fecha los dineros son reintegrados a Fiduprevisora, si el docente no realizó el cobro debe solicitar la reprogramación del pago. Los requisitos necesarios para una reprogramación son:\na. Formato solicitud de reprogramación, debidamente diligenciado y firmado en su totalidad.\nb. Copia legible por ambas caras de la cédula de ciudadanía.\nSi se actúa por intermediarios, es necesario adjuntar el respectivo poder, autenticado ante Notaria.\nEstos documentos deben remitirse  a la Dirección de Afiliaciones y Recaudos de Fiduprevisora S.A., ubicada en la calle 72 No. 10 – 03 Bogotá D.C.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "COMO CREAR EL PRESUPUESTO ",
+    "Respuestas": "Para realizar el presupuesto \n\n1.\tIngresar con su usuario creado en ALISSTA al módulo - Liderazgo Gerencial  / Crear presupuesto\n 2.  El presupuesto se puede crear por sede y periodo respectivamente, para lo cual debe digitar el \nrubro total y seguidamente la opción GENERAR.",
+    "Tema": "COMO CREAR EL PRESUPUESTO "
   },
   {
-    "Preguntas": "¿Qué entidad expide copia de los Actos Administrativos de reconocimiento o negación de las prestaciones económicas de un docente?",
-    "Respuestas": "La Secretaría de Educación correspondiente, por ser ésta la que lleva el registro y archivo de los actos administrativos que se profieren en ella. De igual manera registra y archiva los documentos que forman parte de los expedientes que sirven de soporte técnico y jurídico para la expedición de los actos administrativos de su competencia. Tanto los docentes como los organismos judiciales y de control pueden obtener copia de los actos administrativos y sus documentos antecedentes en la Secretaría de Educación que los expidió.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "GENERAR CERTIFICADO DEL PRESUPUESTO",
+    "Respuestas": "Para realizar el certificado del presupuesto\n\n1.\tIngresar con su usuario creado en ALISSTA al módulo - Organización   / Recurss en SST / Crear Recursos \n 2.  Seleccione la sede y el periodo (Año)\n3. Al dar clic en asignar, aparecerá en pantalla un nuevo formulario donde solicita al usuario \ndiligenciar los campos Nombre del recurso, Tipo de recurso (Financiero, Humano, Tecnológico y \notros) y fase (Diseño, Implementación, Revisión, Evaluación y Mejora). El sistema permite \nGuardar el recurso o cancelar la acción.\n\nNOTA: Al editar el informe, el sistema visualiza las actividades creadas y el presupuesto asignado para cada \nmes. Adicionalmente el usuario puede Agregar actividades, agruparlas y asignar presupuesto \nmensual",
+    "Tema": "GENERAR CERTIFICADO DEL PRESUPUESTO"
   },
   {
-    "Preguntas": "¿Me notifique de la resolución hace un tiempo y quiero saber por qué no me han pagado?",
-    "Respuestas": "Una vez notificado, Fiduprevisora elabora una nómina de pensiones, reliquidaciones pensiónales, sustituciones, pensiones post-morten con fecha de pago los 20 de cada mes, en la cual se incluyen todas las resoluciones recibidas hasta el 10 del mes anterior y nóminas diarias de cesantías parciales y cesantías definitivas.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "CREAR RECUROS ",
+    "Respuestas": "Para crear los recursos\n\n1.\tIngresar con su usuario creado en ALISSTA al módulo - Organización  / Crear presupuesto\n 2.  Se debe seleccionar la Sede, el periodo (Año) y dar clic en el botón ASIGNAR para agregar\nrecurso\n3. Clic en buscar\n\nNOTA: Al editar el informe, el sistema visualiza las actividades creadas y el presupuesto asignado para cada \nmes. Adicionalmente el usuario puede Agregar actividades, agruparlas y asignar presupuesto \nmensual",
+    "Tema": "CREAR RECUROS "
   },
   {
-    "Preguntas": "Si tengo apoderado, ¿a favor de quien se ordena el pago?",
-    "Respuestas": "El pago se ordena a favor del docente por ser el titular del derecho.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "VISUALIZAR RECURSOS ",
+    "Respuestas": "Para visualizar los recursos \n\n1.\tIngresar con su usuario creado en ALISSTA al módulo - Organización  / Crear presupuesto\n2.           Para visualizar los recursos se debe seleccionar la Sede, el Periodo (Año) y dar clic en el Botón \nVer Recursos Asignados\n3.           Una vez se muestre la lista de recursos asignados, el sistema permite Generar en PDF o Exportar \na Excel\n4.        Para ampliar la información se debe dar clic en el icono de LUPA, Adicionalmente el usuario tiene la \nopción de editar el recurso.\n5.      Clic para obtener la información del recurso en un formulario y poder realizar la modificación.\n• Seleccione una Sede para actualizar el recurso.\n• Seleccione un Periodo de asignación para el recurso a Editar.\n• Nombre Recurso\n• Seleccione el tipo de recurso para modificar.\n• Seleccione la fase del recurso para modificar\n6.        Clic para almacenar en el sistema el recurso editado.\n",
+    "Tema": "VISUALIZAR RECURSOS "
   },
   {
-    "Preguntas": "¿Por qué Fiduprevisora debe estudiar las prestaciones de los docentes?",
-    "Respuestas": "Porque la ley 962 de 2005 dispuso que antes del reconocimiento, la entidad fiduciaria debe impartir su aprobación",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "ADQUISICIÓN DE BIENES Y SERVICIOS",
+    "Respuestas": "Facilita almacenar las especificaciones de seguridad y salud en el trabajo se contemplen, \napliquen y controlen durante las compras y adquisiciones, a proveedores y contratistas. Puede \nincluir modelos de manuales de contratación pertinentes a seguridad y salud en el trabajo. Así \nmismo se presenta la funcionalidad de evaluación de proveedores y contratistas que interactúe \ncon la empresa\n\n1.   Ingresar con su usurio creado en ALISSTA al modulo - Aplicación/ Adquisición de Bienes y servicios/ Guía Adquisiciones de Bienes\n2.   Se debe  adjuntar  archivos en los siguientes formatos: PDF, DOC, DOCX, \nPPTX, PPT, XLSX, XLS, PNG, y JPG máximo de un tamaño máximo de 10 Mb por archivo",
+    "Tema": "ADQUISICIÓN DE BIENES Y SERVICIOS"
   },
   {
-    "Preguntas": "¿Qué entidad expide copia de los Actos Administrativos de reconocimiento o negación de las prestaciones económicas de un docente?",
-    "Respuestas": "La Secretaría de Educación correspondiente, por ser ésta la que lleva el registro y archivo de los actos administrativos que se profieren en ella. De igual manera registra y archiva los documentos que forman parte de los expedientes que sirven de soporte técnico y jurídico para la expedición de los actos administrativos de su competencia. Tanto los docentes como los organismos judiciales y de control pueden obtener copia de los actos administrativos y sus documentos antecedentes en la Secretaría de Educación que los expidió.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "SOLICITUD DE USUARIO EN ALISSTA",
+    "Respuestas": "Para el ingreso en la plataforma, debe solicitar su usuario a través de la web en el link www.alissta.gov.co/SSUM en la pestaña de “Solicita tu usuario aquí” diligencie los datos que solicita la plataforma.\n•\tEmpleador: Debe colocar la empresa en la cual trabaja\n•\tTipo de identificación del usuario\n•\tNumero de identificación del usuario (darl clic en la lupa para que se autocompleten el nombre y apellido\n•\tCelular\n•\tTelefono fijo\n•\tCorreo electrónico (uno válido ya que alli llega la clave temporal para el ingreso.\n•\tCargo\n•\tPregrado\n•\tEspecialización SST (Si cuenta con la misma)\n•\tVicepresidencia \n•\tGerencia Nacional\n•\tGerencia sucursal\n•\tRol solicitado (ASESOR POR PROYECTO)\n•\tPerfil (Colocar el grado)\n•\tNúmero de licencia más la fecha de expedición\n•\tSeleccionar el registro de actividades a desempeñar (GRAN EMPRESA)\n•\tTres preguntas de seguridad más tres respuestas\n•\tVerificación\n•\tSeleccionar \"Crear usuario\"\n\nEsta solicitud estará para aprobación, recordar que quien aprueba los usuarios es el ingeniero Andres Tovar. Luego de ser notificado de la aprobación de usuario ALISSTA, por el correo registrado en el formato SOLICITUD DE CREACIÓN USUARIO EMPRESA, debe ingresar a la Plataforma ALISSTA SSUM :",
+    "Tema": "GRAN EMPRESA\nSOLICITUD DE USUARIO EN ALISSTA"
   },
   {
-    "Preguntas": "¿Cuál es el trámite de estudio y pago de una prestación?",
-    "Respuestas": "El docente debe presentar ante la Secretaría de Educación correspondiente, en los formatos adoptados para el efecto, la solicitud de reconocimiento de la prestación, junto con los documentos exigidos según el caso. La Secretaría de Educación adelanta el estudio pertinente y elabora el proyecto de Acto Administrativo de reconocimiento de la prestación, enviándolo junto con todos los anexos a Fiduciaria La Previsora S.A. De acuerdo con las disposiciones de la Ley 962 de 2005 y el Decreto 2831 de 2005, Fiduprevisora, a través de un equipo especializado revisa el proyecto de acto administrativo y lo aprueba o niega devolviéndolo a la Secretaría de Educación con las observaciones de forma y /o fondo a que haya lugar. La Secretaría de Educación procede a emitir la Resolución (acto administrativo), reconociendo el derecho y ordenando el pago de la prestación, así mismo procede a la notificación al docente y una vez la Resolución se encuentra ejecutoriada envía una copia de la misma a Fiduprevisora para proceder al pago. Para el pago efectivo de la prestación económica Fiduprevisora realiza nóminas periódicas con la frecuencia que se requiera. El competente para corregir los proyectos de acto administrativo o los actos administrativos ejecutoriados, es la Secretaría de Educación. Fiduprevisora sólo tiene facultades para hacer las observaciones a que haya lugar.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "INGRESO A LA PLATAFORMA ALISSTA  SSUM",
+    "Respuestas": "1. DIGITE DOCUMENTO EMPLEADOR: Nit (Escribir el Nit sin puntos ni comas y sin dígito de verificación)\n2. DIGITE DOCUMENTO USUARIO: Cédula de ciudadanía ( La Cédula debe escribirlo sin puntos ni comas)\n3. DIGITE CLAVE DE ACCESO: No escribir la clave - Debe copiar y pegar la clave incluyendo la P al final para evitar errores.\nRecuerde ingresar a ALISSTA desde Google Chrome.",
+    "Tema": "GRAN EMPRESA\nIngreso a la plataforma ALISSTA"
   },
   {
-    "Preguntas": "¿Cómo puedo revocar el poder conferido a mi abogado?",
-    "Respuestas": "La revocatoria del poder debe presentarla ante la Secretaria de Educación a la cual pertenece el docente. Esta revocatoria debe ser informar a su abogado. ",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
+    "Preguntas": "PRESUPUESTO SUCURSAL",
+    "Respuestas": "Para generar el presupuesto de sucursal debe dirigirse a Atención de empresas > Gran Empresa > Asignación> Presupuesto sucursal\n•\tPestaña asignación de presupuesto: Se utiliza cuando aun no existe una vigencia con presupuesto, debe colocar la vigencia y clic en el botón consultar. Seleccionar la gerencia sucursal y Valor Proveedor Especializado, Valor Asesor Proyecto y Valor Ejecutivo Integral de Servicio.\n•\tPestaña presupuestos creados: Se utiliza cuando se cuenta con al menos 1 presupuesto para la vigencia, allí se puede editar la información, borrar la vigencia (siempre y cuando no se tenga procesos en las sucursales ya presupuestadas) copiar el presupuesto para otra vigencia, y añadir sucursales que no han sido presupuestadas.\nPara generar el presupuesto de sucursal debe dirigirse a Atención de empresas > Gran Empresa > Asignación> Presupuesto sucursal\n•\tPestaña asignación de presupuesto: Se utiliza cuando aun no existe una vigencia con presupuesto, debe colocar la vigencia y clic en el botón consultar. Seleccionar la gerencia sucursal y Valor Proveedor Especializado, Valor Asesor Proyecto y Valor Ejecutivo Integral de Servicio.\n•\tPestaña presupuestos creados: Se utiliza cuando se cuenta con al menos 1 presupuesto para la vigencia, allí se puede editar la información, borrar la vigencia (siempre y cuando no se tenga procesos en las sucursales ya presupuestadas) copiar el presupuesto para otra vigencia, y añadir sucursales que no han sido presupuestadas.\nPara generar el presupuesto de sucursal debe dirigirse a Atención de empresas > Gran Empresa > Asignación> Presupuesto sucursal\n•\tPestaña asignación de presupuesto: Se utiliza cuando aun no existe una vigencia con presupuesto, debe colocar la vigencia y clic en el botón consultar. Seleccionar la gerencia sucursal y Valor Proveedor Especializado, Valor Asesor Proyecto y Valor Ejecutivo Integral de Servicio.\n•\tPestaña presupuestos creados: Se utiliza cuando se cuenta con al menos 1 presupuesto para la vigencia, allí se puede editar la información, borrar la vigencia (siempre y cuando no se tenga procesos en las sucursales ya presupuestadas) copiar el presupuesto para otra vigencia, y añadir sucursales que no han sido presupuestadas.\n",
+    "Tema": "GRAN EMPRESA\nPresupuesto de la suscursal"
   },
   {
-    "Preguntas": "¿En qué orden se tramitan las prestaciones económicas?",
-    "Respuestas": "Las prestaciones deben tramitarse en estricto orden de radicación en las secretarias de educación y en la  Fiduciaria en estricto orden de ingreso.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Qué normas señalan la competencia para el reconocimiento?",
-    "Respuestas": "La ley 962 de 2005 articulo 56 y Decreto 2831 de 2005.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Quién expide el acto administrativo de reconocimiento de una prestación?",
-    "Respuestas": "El Secretario de Educación de la entidad territorial a la cual pertenece el educador.",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Qué prestaciones económicas paga el Fondo de Prestaciones Sociales del Magisterio?",
-    "Respuestas": "Pensiones\nCesantías Definitivas\nCesantías Parciales\nAuxilios\nIntereses a las cesantías",
-    "Tema": "Preguntas relacionadas con el fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Cómo se liquida un seguro por muerte con el sistema de régimen de prima media con prestación definida?",
-    "Respuestas": "Los docentes vinculados después de la ley 812 de 2003 no tienen derecho a seguro por muerte. Esta prestación no está contemplada para el régimen de prima media, esta se reemplaza por el auxilio funerario para cotizantes, prestación establecida por la Ley 100 de 1993.",
-    "Tema": "Preguntas relacionadas con interés - Fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Qué deben hacer los beneficiarios de un docente fallecido para cobrar intereses a las cesantías no cobrados por él en vida?",
-    "Respuestas": "Para ordenar el pago de intereses a beneficiarios de un docente debe surtirse el siguiente trámite:\n1. Solicitud de los beneficiarios dirigida a Fiduprevisora. Dirección de Prestaciones.\n2. Fotocopia de los documentos de identificación de cada beneficiario. Si son menores indicar cual es el representante legal.\n3. Fotocopia del registro civil de defunción del docente.\n4. Indicar una cuenta bancaria en donde se puedan realizar los pagos. Indicando número, tipo de cuenta.\n5. Dirección y teléfono de cada uno de los beneficiarios.\nLos beneficiarios deben corresponder a los reconocidos en la cesantía definitiva o seguro por muerte.",
-    "Tema": "Preguntas relacionadas con interés - Fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Cuándo se realiza la reprogramación de los intereses a las cesantías de los docentes que no cobraron?",
-    "Respuestas": "Los intereses reintegrados por las entidades bancarias son reprogramados en las nóminas de pagos de intereses durante todo el año y están disponibles 90 días en el banco.",
-    "Tema": "Preguntas relacionadas con interés - Fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Por qué la liquidación de intereses no se incrementa anualmente?",
-    "Respuestas": "Porque la tasa de interés (DTF) ha venido decreciendo en los últimos 7 años. También disminuyen los intereses a las cesantías parciales que le han pagado al educador.",
-    "Tema": "Preguntas relacionadas con interés - Fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Quiénes tienen derecho a los intereses a las cesantías?",
-    "Respuestas": "Tienen derecho a pago de intereses todos los educadores de vinculación nacional y los vinculados a partir del primero de enero de 1990, según lo establece el artículo 15 de la ley 91 de 1989. Para los docentes territoriales se tiene en cuenta el régimen prestacional certificado de cada convenio de afiliación. Todos los afiliados con posterioridad a cada convenio tienen derecho al pago de intereses, porque su régimen prestacional es el mismo que aplica a los docentes nacionales.",
-    "Tema": "Preguntas relacionadas con interés - Fondo de Pensiones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Qué documentos soporte deben adjuntarse a la Orden de Pago?",
-    "Respuestas": "Los documentos que se deben adjuntar en cada uno de los pagos dependen del tipo de pago y la calidad del beneficiario, al igual que de los requisitos definidos en el contrato fiduciario. Los documentos soporte mínimos, son los siguientes: Personas Naturales:\n\nCuenta de Cobro o factura.\nCopia del pago correspondiente a los aportes de salud y pensión correspondiente al periodo de pago.\nCopia del RUT.\nPersonas Jurídicas:\n\nFactura de Venta\nCopia del RUT.\nContratos de Obra, Informes de Interventoria y Avances de Obra, si los pagos corresponden a contratos de obra.\nCertificación expedida por el Revisor Fiscal o Representante Legal correspondiente a los pagos parafiscales, y aportes de salud y pensión correspondiente al período de pago.",
-    "Tema": "Preguntas relacionadas con lagestión de Fiduprevisora"
-  },
-  {
-    "Preguntas": "¿Cuál es el proceso para tramitar un pago en desarrollo de un contrato fiduciario administrado por Fiduprevisora S.A.?",
-    "Respuestas": "El pago se debe solicitar en el formato de Orden de Pago establecido por la Fiduciaria y suscrito por el Ordenador del Gasto, junto con los documentos soportes del pago. El Ordenador del Gasto debe tener registrada su firma en la Fiduciaria.",
-    "Tema": "Preguntas relacionadas con lagestión de Fiduprevisora"
-  },
-  {
-    "Preguntas": "¿Cuáles son los productos que ofrece actualmente Fiduprevisora?",
-    "Respuestas": "Los servicios y productos que ofrece Fiduprevisora los encuentras en nuestra sección QUÉ HACEMOS. Cada producto se diseña y estructura de acuerdo a las necesidades del cliente y las características de su proyecto.",
-    "Tema": "Preguntas relacionadas con lagestión de Fiduprevisora"
-  },
-  {
-    "Preguntas": "¿La fiduciaria tiene líneas de crédito?",
-    "Respuestas": "La legislación Colombiana prohíbe a las Fiduciarias otorgar créditos, ya que es una función específica de las entidades crediticias. Sin embargo, la fiduciaria tiene actualmente convenios con diferentes entidades financieras con las cuales puede estructurar a través de un esquema fiduciario la consecución de recursos para el desarrollo de proyectos.",
-    "Tema": "Preguntas relacionadas con lagestión de Fiduprevisora"
-  },
-  {
-    "Preguntas": "¿Fiduprevisora tiene presencia a nivel nacional?",
-    "Respuestas": "Actualmente la fiduciaria cuenta con oficinas en 13 ciudades del país con horario continuo de lunes a viernes de 8:00 am a 5:00 pm y los sábados de 8:00 am a 12:00 m: –  Medellín: Carrera 43 b no. 14 – 59 local 104, Sector Manila, El Poblado –  Cali: Avenida 5Nte No 21n-22 Of 307  Ed Centro Versalles –  Montería: Calle 26 #3-38 local 3 edificio Urban Park –  Bogotá: Calle 72 No 10-03 –  Riohacha: Cra 7 # 1-38 –  Popayán: Calle 4 No. 5-14 piso 1 –  Barranquilla: Carrera 51b #76-136 oficina 101 –  Cartagena: Calle Larga # 9ª-45 con Callejón San Antonio –  Villavicencio: Calle 40 no. 32 – 59 –  Manizales: Calle 58 no. 23 – 74 Local 1 –  Pereira: Calle 14 no. 21 – 56 Local 6 Sin embargo es importante aclarar que Fiduprevisora S.A., tiene la infraestructura tecnológica, operativa y administrativa requerida para atender negocios en otras ciudades del país.",
-    "Tema": "Preguntas relacionadas con lagestión de Fiduprevisora"
-  },
-  {
-    "Preguntas": "¿En caso de necesitar un esquema fiduciario con quien me puedo contactar?",
-    "Respuestas": "En la Fiduciaria existe la Vicepresidencia Comercial, área encargada de estructurar los esquemas fiduciarios que requiera cualquier persona natural o jurídica, para lo cual puede comunicarse al teléfono número 5-945-111 extensiones 1305, 1330 y 1331, 1360, 1361.",
-    "Tema": "Preguntas relacionadas con lagestión de Fiduprevisora"
-  },
-  {
-    "Preguntas": "¿Fiduprevisora atiende negocios privados o únicamente negocios con el sector público?",
-    "Respuestas": "Fiduprevisora ofrece todos los esquemas fiduciarios que puede necesitar una empresa tanto del sector privado como público, tenemos la experiencia, capacidad y el interés para atender cualquier cliente o requerimiento.",
-    "Tema": "Preguntas relacionadas con lagestión de Fiduprevisora"
-  },
-  {
-    "Preguntas": "¿Hasta qué edad tiene derecho los hijos mayores a la sustitución de una pensión de jubilación?",
-    "Respuestas": "Los mayores inválidos hasta cuando permanezcan en estado de invalidez y los estudiantes hasta que demuestren escolaridad continúa desde el fallecimiento del docente y hasta los 25 años.",
-    "Tema": "Preguntas relacionadas con pensiones - Fondo de Prestaciones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Procede la re liquidación de pensión de un docente activo?",
-    "Respuestas": "No. Únicamente procede cuando el docente pensionado se retira definitivamente del servicio activo. Si no hay retiro se podrá solicitar la revisión.",
-    "Tema": "Preguntas relacionadas con pensiones - Fondo de Prestaciones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Es computable el tiempo privado para el reconocimiento de una pensión por el Fondo del Magisterio?",
-    "Respuestas": "Sí, pero únicamente a través de la pensión por aportes, siempre y cuando el tiempo de servicios haya sido cotizado al Instituto de Seguro Social y el educador tenga 60 años si es hombre o 55 años si es mujer.",
-    "Tema": "Preguntas relacionadas con pensiones - Fondo de Prestaciones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Qué cálculo debo realizar para ajustar la pensión de invalidez al 100%?",
-    "Respuestas": "El ajuste debe hacerlo sobre los mismos salarios de la pensión inicial, le aplica el porcentaje de pérdida de capacidad nuevo, a ese resultado le aplica los incrementos pensiónales hasta la fecha de la nueva valoración y esa será la cuantía del ajuste. La fecha de efectividad del ajuste será la de la nueva valoración.",
-    "Tema": "Preguntas relacionadas con pensiones - Fondo de Prestaciones Sociales del Magisterio FOMAG"
-  },
-  {
-    "Preguntas": "¿Es opcional el documento de certificación de las entidades administradoras de pensión indicando si se encuentra o no pensionado el docente? , ¿Si el docente se encuentra pensionado por otra entidad se le debe solicitar fotocopia de la resolución?",
-    "Respuestas": "La certificación es obligatoria, tal como se indica en el formato de solicitud de pensiones punto séptimo. Si es pensionado por otra entidad debe aportar copia de la resolución que lo pensionó. A una solicitud de ajuste sobre una pensión de invalidez que fue reconocida en el año 2001 con el 75% del salario que devengaba el docente al momento de su retiro; recientemente le practicaron nueva valoración y el resultado arrojó una PCL del 100%",
-    "Tema": "Preguntas relacionadas con pensiones - Fondo de Prestaciones Sociales del Magisterio FOMAG"
+    "Preguntas": "SOLICITUD DE ATENCIÓN DE EMPRESAS",
+    "Respuestas": "Para solicitar la atención de la empresa, sigue estos pasos:\n\n1. Verifica el Presupuesto: Asegúrate de que la sucursal cuente con el presupuesto necesario.\n\n2. Accede a la Ruta: Ingresa a la siguiente ruta en el sistema:\n- Atención de empresas > Gran Empresa > Asignación > Solicitud atención.\n\n3. Utiliza la Pestaña “General”:\n- Esta pestaña te permite consultar todas las empresas que requieren atención según la gerencia de la sucursal y su actividad económica.\n- Completa los campos obligatorios:\n- Sucursal\n- Caracterización (debe ser \"regular\")\n- Naturaleza\n- Sector Económico\n- Haz clic en \"Consultar\" para ver todas las empresas que necesitan atención.\n\n4. Selecciona la Empresa:\n- Busca la empresa deseada en la lista.\n- Selecciona \"RECAUDO ANUAL EMPRESA\".\n- Haz clic en el ícono de \"Guardar\" para registrar la información.\n- Si deseas modificar los valores de inversión tope sugerida, hazlo en este paso.\n\n5. Asigna la Atención:\n- Finalmente, haz clic en \"Asignar\" para completar el proceso.\n\n6. Utiliza la Pestaña “Identificación” (opcional):\n- Si prefieres buscar empresas por su NIT, utiliza esta pestaña.\n- Completa los mismos campos obligatorios que en la pestaña “General” y sigue los mismos pasos para consultar, seleccionar y asignar.",
+    "Tema": "GRAN EMPRESA\nSolicitud de atencion a empresas"
   }
 ]
