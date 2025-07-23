@@ -37,7 +37,7 @@ export default function CustomizationPage() {
   setCurrentQuestion('');
 
   try {
-    const res = await fetch('https://f7c67788071d.ngrok-free.app/ask', {
+    const res = await fetch('https://1310779e4e51.ngrok-free.app/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question, empresa_id: empresaId, history: messages })
