@@ -231,9 +231,23 @@ export default function CustomizationPage() {
               </div>
             ))}
           </div>
-
+          
           {/* Input y botón */}
           <div className="flex gap-2">
+            {
+  config?.terminos && (
+    <div className="bg-white shadow-md border mt-6 p-4 rounded">
+      <h3 className="text-xl font-semibold text-black mb-2">Términos y Condiciones</h3>
+      <div className="max-h-60 overflow-y-auto whitespace-pre-wrap text-black text-sm bg-gray-50 p-3 rounded border">
+        {config.terminos}
+      </div>
+      <div className="mt-2 flex items-center">
+        <input type="checkbox" id="aceptar" className="mr-2" />
+        <label htmlFor="aceptar" className="text-black text-sm">He leído y acepto los términos y condiciones.</label>
+      </div>
+    </div>
+  )
+}
             <input
               type="text"
               placeholder="Escribe tu pregunta..."

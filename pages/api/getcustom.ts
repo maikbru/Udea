@@ -26,6 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ec.bg_color AS "bgColor", 
         ec.sidebar_color AS "sidebarColor", 
         ec.welcome_text AS "welcomeText",
+        ec.terms_text AS "terminos",
         u.username
       FROM empresa_config ec
       LEFT JOIN users u ON ec.empresa_id = u.id

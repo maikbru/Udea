@@ -8,6 +8,7 @@ import * as XLSX from 'xlsx';
 
 export default function CustomizationPage() {
   const [excelFile, setExcelFile] = useState<File | null>(null);
+  const [wordFile, setWordFile] = useState<File | null>(null);
   const [activeSection, setActiveSection] = useState<'custom' | 'upload'>('custom');
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
@@ -439,47 +440,62 @@ export default function CustomizationPage() {
     <div className="max-w-4xl mx-auto bg-white p-6 rounded shadow">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Subir archivo Excel</h2>
       <form onSubmit={handleExcelUpload}>
+  {/* Subir archivo Excel */}
+  <input
+    type="file"
+    accept=".xlsx, .xls"
+    onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
+    className="mb-4 text-black border p-2 rounded w-full"
+  />
+
+  {/* Subir documento Word */}
+  <div className="mb-4">
+    <label className="block mb-2 text-black font-semibold">Términos y condiciones (.docx)</label>
+    <input
+      type="file"
+      accept=".doc,.docx"
+      onChange={(e) => setWordFile(e.target.files?.[0] || null)}
+      className="text-black border p-2 rounded w-full"
+    />
+  </div>
+
+  {/* Links */}
+  <div className="mb-4">
+    <h2 className='text-2xl font-bold text-black mb-3'>Links de alimentación</h2>
+    {linkPages.map((link, index) => (
+      <div key={index} className="flex gap-2 mb-2">
         <input
-          type="file"
-          accept=".xlsx, .xls"
-          onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
-          className="mb-4 text-black border p-2 rounded w-full"
+          type="text"
+          value={link}
+          onChange={(e) => handleLinkChange(index, e.target.value)}
+          className="flex-grow px-4 text-black py-2 border border-gray-300 rounded-md"
+          placeholder={`Link ${index + 1}`}
         />
-        <div className="mb-4">
-          <h2 className='text-2xl font-bold text-black mb-3'>Links de alimentación</h2>
-          {linkPages.map((link, index) => (
-            <div key={index} className="flex gap-2 mb-2">
-              <input
-                type="text"
-                value={link}
-                onChange={(e) => handleLinkChange(index, e.target.value)}
-                className="flex-grow px-4 text-black py-2 border border-gray-300 rounded-md"
-                placeholder={`Link ${index + 1}`}
-              />
-              <button
-                type="button"
-                onClick={() => removeLink(index)}
-                className="text-red-500 font-bold"
-              >
-                ✕
-              </button>
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={addLink}
-            className="text-blue-600 underline text-sm"
-          >
-            + Agregar otro link
-          </button>
-        </div>
         <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          type="button"
+          onClick={() => removeLink(index)}
+          className="text-red-500 font-bold"
         >
-          Subir archivo
+          ✕
         </button>
-      </form>
+      </div>
+    ))}
+    <button
+      type="button"
+      onClick={addLink}
+      className="text-blue-600 underline text-sm"
+    >
+      + Agregar otro link
+    </button>
+  </div>
+
+  <button
+    type="submit"
+    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+  >
+    Subir archivo
+  </button>
+</form>
     </div>)
     }
       </div>
