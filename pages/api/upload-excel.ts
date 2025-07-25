@@ -30,10 +30,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ message: 'Error procesando el formulario' });
     }
 
-    const empresaId = fields.empresaId?.[0];
-    const data = fields.data?.[0];
-    const linkPages = fields.linkPages?.[0];
-    const docxFile = files.termsFile?.[0];
+    const empresaId = fields.empresaId;
+    const data = fields.data;
+    const linkPages = fields.linkPages;
+    const docxFile = Array.isArray(files.termsFile) ? files.termsFile[0] : files.termsFile;
+
 
     if (!empresaId || !data) {
       return res.status(400).json({ message: 'empresaId o data faltante' });
