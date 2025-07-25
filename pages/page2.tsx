@@ -21,6 +21,8 @@ export default function CustomizationPage() {
   const [logo, setLogo] = useState<string | null>(null);
     const { empresaId } = router.query;
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+
   
 
   // Refs
@@ -51,7 +53,24 @@ export default function CustomizationPage() {
   }
 };
 
-
+const TermsModal = () => (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="bg-white rounded-lg shadow-lg max-w-xl w-full p-6">
+      <h2 className="text-xl font-semibold mb-4 text-black">Términos y Condiciones</h2>
+      <div className="overflow-y-auto max-h-60 whitespace-pre-wrap text-sm text-black border p-3 mb-4 bg-gray-50 rounded">
+        {config?.terminos}
+      </div>
+      <div className="flex justify-end">
+        <button
+          onClick={() => setShowTermsModal(false)}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+);
  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
   if (!file) return;
@@ -139,6 +158,10 @@ export default function CustomizationPage() {
         setSidebarColor(data.sidebarColor || '#2563eb');
         setWelcomeText(data.welcomeText || '');
         setIsLoading(false);
+
+        if (data.terminos) {
+        setShowTermsModal(true); // Mostrar modal
+      }
       })
       .catch(err => {
         console.error('Error cargando configuración:', err);
@@ -149,10 +172,12 @@ export default function CustomizationPage() {
 
   if (isLoading) return null;
   return (
+    
     <div className="back bg-gray-100 font-sans min-h-screen"
     style={{ backgroundColor: bgColor }}
     >
-      
+      {showTermsModal && <TermsModal />}
+
       {/* Top Bar */}
       <div className="bg-white shadow-md w-full h-16 border flex items-center justify-between px-6 fixed top-0 left-0 z-10" style={{ borderColor: '#11998e' }}>
         {/* Customizable Logo */}
@@ -234,20 +259,7 @@ export default function CustomizationPage() {
           
           {/* Input y botón */}
           <div className="flex gap-2">
-            {
-  config?.terminos && (
-    <div className="bg-white shadow-md border mt-6 p-4 rounded">
-      <h3 className="text-xl font-semibold text-black mb-2">Términos y Condiciones</h3>
-      <div className="max-h-60 overflow-y-auto whitespace-pre-wrap text-black text-sm bg-gray-50 p-3 rounded border">
-        {config.terminos}
-      </div>
-      <div className="mt-2 flex items-center">
-        <input type="checkbox" id="aceptar" className="mr-2" />
-        <label htmlFor="aceptar" className="text-black text-sm">He leído y acepto los términos y condiciones.</label>
-      </div>
-    </div>
-  )
-}
+            
             <input
               type="text"
               placeholder="Escribe tu pregunta..."

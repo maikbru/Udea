@@ -32,10 +32,12 @@ export default function CustomizationPage() {
   const handleExcelUpload = async (e: React.FormEvent) => {
   e.preventDefault();
   if (!excelFile) return alert('Seleccione un archivo');
+
   const empresaId = localStorage.getItem('empresaId');
   if (!empresaId) return alert("Empresa no identificada");
 
   const reader = new FileReader();
+
   reader.onload = async (event) => {
     const data = new Uint8Array(event.target?.result as ArrayBuffer);
     const workbook = XLSX.read(data, { type: 'array' });
@@ -43,24 +45,46 @@ export default function CustomizationPage() {
     const sheet = workbook.Sheets[sheetName];
     const jsonData = XLSX.utils.sheet_to_json(sheet);
 
+    // Preparamos el FormData
     const formData = new FormData();
     formData.append('empresaId', empresaId);
-    formData.append('data', JSON.stringify(jsonData));
+    formData.append('data', JSON.stringify(jsonData)); // como string
     formData.append('linkPages', JSON.stringify(linkPages));
-    if (wordFile) formData.append('termsFile', wordFile); // Importante para el DOCX
 
-    const res = await fetch('/api/upload-excel', {
-      method: 'POST',
-      body: formData, // No pongas headers aquí
-    });
+    if (wordFile) {
+      formData.append('termsFile', wordFile);
+    }
 
-    const result = await res.json();
-    if (res.ok) alert('Archivo procesado con éxito');
-    else alert(result.message || 'Error al subir el archivo');
+    try {
+  const res = await fetch('/api/upload-excel', {
+    method: 'POST',
+    body: formData,
+  });
+
+  let result;
+  try {
+    result = await res.json();
+  } catch (err) {
+    const errorText = await res.text();
+    console.error('Respuesta no JSON:', errorText);
+    alert('Error inesperado del servidor');
+    return;
+  }
+
+  if (res.ok) {
+    alert('Archivo procesado con éxito');
+  } else {
+    alert(result.message || 'Error al subir el archivo');
+  }
+} catch (error) {
+  console.error('Error al enviar archivos:', error);
+  alert('Error al subir el archivo');
+}
   };
 
   reader.readAsArrayBuffer(excelFile);
 };
+
 
 
  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
