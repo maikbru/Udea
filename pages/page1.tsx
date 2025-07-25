@@ -32,12 +32,8 @@ export default function CustomizationPage() {
   const handleExcelUpload = async (e: React.FormEvent) => {
   e.preventDefault();
   if (!excelFile) return alert('Seleccione un archivo');
-
   const empresaId = localStorage.getItem('empresaId');
   if (!empresaId) return alert("Empresa no identificada");
-
-  
-
 
   const reader = new FileReader();
   reader.onload = async (event) => {
@@ -47,11 +43,15 @@ export default function CustomizationPage() {
     const sheet = workbook.Sheets[sheetName];
     const jsonData = XLSX.utils.sheet_to_json(sheet);
 
-    // Enviar JSON al backend
+    const formData = new FormData();
+    formData.append('empresaId', empresaId);
+    formData.append('data', JSON.stringify(jsonData));
+    formData.append('linkPages', JSON.stringify(linkPages));
+    if (wordFile) formData.append('termsFile', wordFile); // Importante para el DOCX
+
     const res = await fetch('/api/upload-excel', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ empresaId, data: jsonData, linkPages })
+      body: formData, // No pongas headers aquí
     });
 
     const result = await res.json();
@@ -61,6 +61,7 @@ export default function CustomizationPage() {
 
   reader.readAsArrayBuffer(excelFile);
 };
+
 
  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
