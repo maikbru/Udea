@@ -281,11 +281,11 @@ const TermsModal = () => (
               placeholder="Escribe tu pregunta..."
               value={currentQuestion}
               onChange={(e) => setCurrentQuestion(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleAsk()}
+              onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
               className="flex-grow px-4 py-2 border border-gray-300 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
-              onClick={handleAsk}
+              onClick={handleSubmit}
               className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
             >
               Enviar
