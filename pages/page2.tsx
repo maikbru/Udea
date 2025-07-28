@@ -45,7 +45,7 @@ export default function CustomizationPage() {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({ question: input })
+        body: JSON.stringify({ question })
       });
 
       if (!response.ok) {
