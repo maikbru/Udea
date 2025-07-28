@@ -65,9 +65,7 @@ export default function CustomizationPage() {
       setMessages(prev => [...prev, { text: data.answer, isUser: false }]);
     } catch (err) {
       setMessages(prev => [...prev, { 
-        text: `Error: ${err.message.includes('carga documentos') ? 
-               'Primero carga documentos PDF en la página de administración' : 
-               error.message}`,
+        console.error('Error al consultar el backend:', err);
         isUser: false 
       }]);
     } finally {
