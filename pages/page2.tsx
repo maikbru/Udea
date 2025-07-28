@@ -42,7 +42,7 @@ export default function CustomizationPage() {
     if (!input.trim() || loading) return;
 
     // Agregar mensaje del usuario
-    setMessages(prev => [...prev, { text: input, isUser: true }]);
+    setMessages((prev) => [...prev, { role: 'user', text: question }]);
     setInput('');
     setLoading(true);
 
@@ -62,7 +62,7 @@ export default function CustomizationPage() {
       }
 
       const data = await response.json();
-      setMessages(prev => [...prev, { text: data.answer, isUser: false }]);
+      setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
     } catch (err) {
       console.error('Error al consultar el backend:', err);
     } finally {
