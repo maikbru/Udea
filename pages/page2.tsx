@@ -55,7 +55,7 @@ export default function CustomizationPage() {
 
       const data = await response.json();
       setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
-    } catch (error) {
+    } catch (err) {
       console.error('Error al consultar el backend:', err);
       setMessages((prev) => [...prev, { role: 'bot', text: 'Error al procesar la respuesta.' }]);
  
