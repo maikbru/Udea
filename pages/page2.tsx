@@ -64,10 +64,7 @@ export default function CustomizationPage() {
       const data = await response.json();
       setMessages(prev => [...prev, { text: data.answer, isUser: false }]);
     } catch (err) {
-      setMessages(prev => [...prev, { 
-        console.error('Error al consultar el backend:', err);
-        isUser: false 
-      }]);
+      console.error('Error al consultar el backend:', err);
     } finally {
       setLoading(false);
     }
