@@ -39,19 +39,33 @@ export default function CustomizationPage() {
   setCurrentQuestion('');
 
   try {
-    const res = await fetch('https://chatbot-backend-y8bz.onrender.com/ask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question})
-    });
+      const response = await fetch('https://chatbot-backend-y8bz.onrender.com/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ question: input })
+      });
 
-    const data = await res.json();
-    setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
-  } catch (err) {
-    console.error('Error al consultar el backend:', err);
-    setMessages((prev) => [...prev, { role: 'bot', text: 'Error al procesar la respuesta.' }]);
-  }
-};
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Error en el servidor');
+      }
+
+      const data = await response.json();
+      setMessages(prev => [...prev, { text: data.answer, isUser: false }]);
+    } catch (error) {
+      setMessages(prev => [...prev, { 
+        text: `Error: ${error.message.includes('carga documentos') ? 
+               'Primero carga documentos PDF en la página de administración' : 
+               error.message}`,
+        isUser: false 
+      }]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
 const TermsModal = () => (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
