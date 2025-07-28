@@ -39,7 +39,7 @@ export default function CustomizationPage() {
   setCurrentQuestion('');
 
   try {
-    const res = await fetch('https://chatbot-backend-y8bz.onrender.com/', {
+    const res = await fetch('https://chatbot-backend-y8bz.onrender.com/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ question, empresa_id: empresaId, history: messages })
