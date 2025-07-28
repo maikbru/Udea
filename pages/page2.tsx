@@ -42,7 +42,7 @@ export default function CustomizationPage() {
     const res = await fetch('https://chatbot-backend-y8bz.onrender.com/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question, empresa_id: empresaId, history: messages })
+      body: JSON.stringify({ question: input })
     });
 
     const data = await res.json();
