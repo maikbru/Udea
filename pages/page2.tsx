@@ -31,21 +31,30 @@ export default function CustomizationPage() {
   const logoInputRef = useRef<HTMLInputElement | null>(null);
   const userMenuRef = useRef<HTMLDivElement | null>(null);
 
-  const handleAsk = async () => {
-  const question = currentQuestion.trim();
-  if (!question || typeof empresaId !== 'string') return;
+  const Chat = () => {
+  const [messages, setMessages] = useState([
+    { text: "¡Bienvenido! Sube documentos PDF en la página de administración para comenzar.", isUser: false }
+  ]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  setMessages((prev) => [...prev, { role: 'user', text: question }]);
-  setCurrentQuestion('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!input.trim() || loading) return;
 
-  try {
+    // Agregar mensaje del usuario
+    setMessages(prev => [...prev, { text: input, isUser: true }]);
+    setInput('');
+    setLoading(true);
+
+    try {
       const response = await fetch('https://chatbot-backend-y8bz.onrender.com/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({ question })
+        body: JSON.stringify({ question: input })
       });
 
       if (!response.ok) {
@@ -54,14 +63,18 @@ export default function CustomizationPage() {
       }
 
       const data = await response.json();
-      setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
-    } catch (err) {
-      console.error('Error al consultar el backend:', err);
-      setMessages((prev) => [...prev, { role: 'bot', text: 'Error al procesar la respuesta.' }]);
- 
-    } 
+      setMessages(prev => [...prev, { text: data.answer, isUser: false }]);
+    } catch (error) {
+      setMessages(prev => [...prev, { 
+        text: `Error: ${error.message.includes('carga documentos') ? 
+               'Primero carga documentos PDF en la página de administración' : 
+               error.message}`,
+        isUser: false 
+      }]);
+    } finally {
+      setLoading(false);
+    }
   };
-
 const TermsModal = () => (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
     <div className="bg-white rounded-lg shadow-lg max-w-xl w-full p-6">
