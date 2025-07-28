@@ -33,7 +33,7 @@ export default function CustomizationPage() {
 
   const Chat = () => {
   const [messages, setMessages] = useState([
-    { text: "¡Bienvenido! Sube documentos PDF en la página de administración para comenzar.", isUser: false }
+    { text: "¡Bienvenido! Sube documentos PDF en la página de administración para comenzar.", role: 'bot' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
