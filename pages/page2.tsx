@@ -63,9 +63,9 @@ export default function CustomizationPage() {
 
       const data = await response.json();
       setMessages(prev => [...prev, { text: data.answer, isUser: false }]);
-    } catch (error) {
+    } catch (err) {
       setMessages(prev => [...prev, { 
-        text: `Error: ${error.message.includes('carga documentos') ? 
+        text: `Error: ${err.message.includes('carga documentos') ? 
                'Primero carga documentos PDF en la página de administración' : 
                error.message}`,
         isUser: false 
