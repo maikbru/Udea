@@ -59,9 +59,7 @@ export default function CustomizationPage() {
       console.error('Error al consultar el backend:', err);
       setMessages((prev) => [...prev, { role: 'bot', text: 'Error al procesar la respuesta.' }]);
  
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
 const TermsModal = () => (
