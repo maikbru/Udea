@@ -38,8 +38,7 @@ export default function CustomizationPage() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (!input.trim() || loading) return;
 
     // Agregar mensaje del usuario
