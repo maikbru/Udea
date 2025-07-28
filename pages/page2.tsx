@@ -40,7 +40,7 @@ export default function CustomizationPage() {
 
   const handleSubmit = async () => {
     if (!input.trim() || loading) return;
-
+    const question = currentQuestion.trim();
     // Agregar mensaje del usuario
     setMessages((prev) => [...prev, { role: 'user', text: question }]);
     setInput('');
