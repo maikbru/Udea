@@ -293,4 +293,4 @@ const TermsModal = () => (
     </div>
   );
 };
-};
+
