@@ -34,7 +34,7 @@ setCurrentQuestion('');
     }
 
     const data = await response.json();
-    setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta || 'No se obtuvo respuesta del servidor' }]);
+    setMessages((prev) => [...prev, { role: 'bot', text: data.answer || 'No se obtuvo respuesta del servidor' }]);
   } catch (err) {
     console.error('Error al consultar el backend:', err);
   } finally {
