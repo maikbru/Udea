@@ -11,11 +11,11 @@ export default function CustomizationPage() {
   const [loading, setLoading] = useState(false);
 
 const handleSubmit = async () => {
-  const question = currentQuestion.trim();
-  if (!question || loading) return;
+  if (!currentQuestion.trim() || loading) return;
 
-  setMessages((prev) => [...prev, { role: 'user', text: question }]);
-  setCurrentQuestion('');
+const questionToSend = currentQuestion.trim();
+setMessages((prev) => [...prev, { role: 'user', text: questionToSend }]);
+setCurrentQuestion('');
   setLoading(true);
 
   try {
@@ -25,7 +25,7 @@ const handleSubmit = async () => {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({ question })
+      body: JSON.stringify({ question: questionToSend })
     });
 
     if (!response.ok) {
@@ -34,7 +34,7 @@ const handleSubmit = async () => {
     }
 
     const data = await response.json();
-    setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
+    setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta || 'No se obtuvo respuesta del servidor' }]);
   } catch (err) {
     console.error('Error al consultar el backend:', err);
   } finally {
