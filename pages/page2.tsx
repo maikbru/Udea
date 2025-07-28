@@ -54,14 +54,11 @@ export default function CustomizationPage() {
       }
 
       const data = await response.json();
-      setMessages(prev => [...prev, { text: data.answer, isUser: false }]);
+      setMessages((prev) => [...prev, { role: 'bot', text: data.respuesta }]);
     } catch (error) {
-      setMessages(prev => [...prev, { 
-        text: `Error: ${error.message.includes('carga documentos') ? 
-               'Primero carga documentos PDF en la página de administración' : 
-               error.message}`,
-        isUser: false 
-      }]);
+      console.error('Error al consultar el backend:', err);
+      setMessages((prev) => [...prev, { role: 'bot', text: 'Error al procesar la respuesta.' }]);
+ 
     } finally {
       setLoading(false);
     }
