@@ -1,46 +1,56 @@
 // /pages/api/getCustomization.ts
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Pool } from 'pg';
+import { createClient } from '@supabase/supabase-js';
 
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: Number(process.env.DB_PORT),
-});
+const supabase = createClient(
+  process.env.SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || '' // Usa SUPABASE_KEY, no SERVICE_ROLE si usas anon
+);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') return res.status(405).json({ message: 'Método no permitido' });
 
   const { empresaId } = req.query;
 
-  if (!empresaId) {
+  if (!empresaId || typeof empresaId !== 'string') {
     return res.status(400).json({ message: 'Falta el parámetro empresaId' });
   }
 
   try {
-    const result = await pool.query(`
-      SELECT 
-        ec.logo, 
-        ec.bg_color AS "bgColor", 
-        ec.sidebar_color AS "sidebarColor", 
-        ec.welcome_text AS "welcomeText",
-        ec.terms_text AS "terminos",
-        u.username
-      FROM empresa_config ec
-      LEFT JOIN users u ON ec.empresa_id = u.id
-      WHERE ec.empresa_id = $1
-      LIMIT 1
-    `, [empresaId]);
+    const { data, error } = await supabase
+      .from('empresa_config')
+      .select(`
+        logo,
+        bg_color,
+        sidebar_color,
+        welcome_text,
+        terms_text,
+        users (
+          username
+        )
+      `)
+      .eq('empresa_id', empresaId)
+      .limit(1)
+      .single(); // ← trae directamente el objeto
 
-    if (result.rows.length === 0) {
+    if (error) {
+      console.error('Error de Supabase:', error);
       return res.status(404).json({ message: 'Configuración no encontrada' });
     }
 
-    res.status(200).json(result.rows[0]);
+    // Renombrar claves para que coincidan con tu frontend
+    const result = {
+  logo: data.logo,
+  bgColor: data.bg_color,
+  sidebarColor: data.sidebar_color,
+  welcomeText: data.welcome_text,
+  terminos: data.terms_text,
+  username: data.users?.[0]?.username || ''
+};
+
+    return res.status(200).json(result);
   } catch (err) {
     console.error('Error al obtener configuración:', err);
-    res.status(500).json({ message: 'Error interno del servidor' });
+    return res.status(500).json({ message: 'Error interno del servidor' });
   }
 }

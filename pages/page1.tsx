@@ -462,26 +462,97 @@ export default function CustomizationPage() {
           </div>
         </div>
         ) : (// Contenido de subida de Excel
-    <div className="max-w-4xl mx-auto bg-white p-6 rounded shadow">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Subir archivo Excel</h2>
-      <form onSubmit={handleExcelUpload}>
-  {/* Subir archivo Excel */}
-  <input
-    type="file"
-    accept=".xlsx, .xls"
-    onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
-    className="mb-4 text-black border p-2 rounded w-full"
-  />
+    // Reemplaza este fragmento en tu componente React para separar las subidas:
 
-  {/* Subir documento Word */}
+<div className="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+  <h2 className="text-2xl font-bold text-gray-800 mb-4">Subida de archivos y enlaces</h2>
+
+  {/* Subida de Excel */}
+  <div className="mb-4">
+    <label className="block mb-2 text-black font-semibold">Archivo Preguntas Y Respuestas (Excel)</label>
+    <input
+      type="file"
+      accept=".xlsx, .xls"
+      onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
+      className="text-black border p-2 rounded w-full mb-2"
+    />
+    <button
+      type="button"
+      onClick={async () => {
+        if (!excelFile) return alert('Selecciona un archivo');
+        const empresaId = localStorage.getItem('empresaId');
+        if (!empresaId) return alert('Empresa no identificada');
+
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const data = new Uint8Array(event.target?.result as ArrayBuffer);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet);
+
+          const res = await fetch('/api/upload-excel', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ empresaId, data: jsonData }),
+          });
+
+          const result = await res.json();
+          alert(result.message);
+        };
+        reader.readAsArrayBuffer(excelFile);
+      }}
+      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+      Guardar Excel
+    </button>
+  </div>
+
+  {/* Subida de Word */}
   <div className="mb-4">
     <label className="block mb-2 text-black font-semibold">Términos y condiciones (.docx)</label>
     <input
       type="file"
       accept=".doc,.docx"
       onChange={(e) => setWordFile(e.target.files?.[0] || null)}
-      className="text-black border p-2 rounded w-full"
+      className="text-black border p-2 rounded w-full mb-2"
     />
+    <button
+      type="button"
+      onClick={async () => {
+        if (!wordFile) return alert('Selecciona un archivo Word');
+        const empresaId = localStorage.getItem('empresaId');
+        if (!empresaId) return alert('Empresa no identificada');
+
+        const formData = new FormData();
+        formData.append('empresaId', empresaId);
+        formData.append('termsFile', wordFile);
+
+        const res = await fetch('/api/upload-word', {
+          method: 'POST',
+          body: formData,
+        });
+
+        let result;
+try {
+  result = await res.json();
+} catch (err) {
+  console.error('La respuesta no es JSON o falló el parseo:', err);
+  alert('Error inesperado del servidor (respuesta no válida)');
+  return;
+}
+
+if (res.ok) {
+  alert(result.message);
+} else {
+  alert(result.message || 'Error al subir el archivo Word');
+}
+
+      }}
+      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+      Guardar Word
+    </button>
   </div>
 
   {/* Links */}
@@ -508,20 +579,32 @@ export default function CustomizationPage() {
     <button
       type="button"
       onClick={addLink}
-      className="text-blue-600 underline text-sm"
+      className="text-blue-600 underline text-sm mb-4 px-4"
     >
       + Agregar otro link
     </button>
-  </div>
+    <button
+      type="button"
+      onClick={async () => {
+        const empresaId = localStorage.getItem('empresaId');
+        if (!empresaId) return alert('Empresa no identificada');
 
-  <button
-    type="submit"
-    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-  >
-    Subir archivo
-  </button>
-</form>
-    </div>)
+        const res = await fetch('/api/upload-links', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ empresaId, links: linkPages }),
+        });
+
+        const result = await res.json();
+        alert(result.message);
+      }}
+      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+      Guardar Links
+    </button>
+  </div>
+</div>
+)
     }
       </div>
     </div>
