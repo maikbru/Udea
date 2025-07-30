@@ -675,7 +675,7 @@ if (res.ok) {
         const empresaId = localStorage.getItem('empresaId');
         if (!empresaId) return alert('Empresa no identificada');
 
-        const res = await fetch('/api/upload-links', {
+        const res = await fetch('/api/scrape_url', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ empresaId, links: linkPages }),
