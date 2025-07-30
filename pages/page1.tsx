@@ -10,6 +10,7 @@ export default function CustomizationPage() {
   const [excelFile, setExcelFile] = useState<File | null>(null);
   const [wordFile, setWordFile] = useState<File | null>(null);
   const [activeSection, setActiveSection] = useState<'custom' | 'upload'>('custom');
+  const [pptxFile, setPptxFile]=useState<File | null>(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [config, setConfig] = useState<any>(null);
@@ -507,7 +508,51 @@ export default function CustomizationPage() {
       Guardar Excel
     </button>
   </div>
+      {/* Subida de PowerPoint */}
+<div className="mb-4">
+  <label className="block mb-2 text-black font-semibold">Presentación PowerPoint (.pptx)</label>
+  <input
+    type="file"
+    accept=".ppt,.pptx"
+    onChange={(e) => setPptxFile(e.target.files?.[0] || null)}
+    className="text-black border p-2 rounded w-full mb-2"
+  />
+  <button
+    type="button"
+    onClick={async () => {
+      if (!pptxFile) return alert('Selecciona un archivo PowerPoint');
+      const empresaId = localStorage.getItem('empresaId');
+      if (!empresaId) return alert('Empresa no identificada');
 
+      const formData = new FormData();
+      formData.append('empresaId', empresaId);
+      formData.append('pptxFile', pptxFile);
+
+      const res = await fetch('/api/upload-powerpoint', {
+        method: 'POST',
+        body: formData,
+      });
+
+      let result;
+      try {
+        result = await res.json();
+      } catch (err) {
+        console.error('La respuesta no es JSON:', err);
+        alert('Error inesperado del servidor');
+        return;
+      }
+
+      if (res.ok) {
+        alert(result.message);
+      } else {
+        alert(result.message || 'Error al subir PowerPoint');
+      }
+    }}
+    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+  >
+    Guardar PowerPoint
+  </button>
+</div>
   {/* Subida de Word */}
   <div className="mb-4">
     <label className="block mb-2 text-black font-semibold">Términos y condiciones (.docx)</label>
