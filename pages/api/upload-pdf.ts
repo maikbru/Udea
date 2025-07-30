@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import formidable from 'formidable';
 import fs from 'fs';
 import FormData from 'form-data';
+import axios from 'axios';
 import { createClient } from '@supabase/supabase-js';
 
 export const config = {
@@ -32,33 +33,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ message: 'empresaId o archivo faltante' });
       }
 
-      // Enviar el archivo PDF al backend en Render
       const formData = new FormData();
       formData.append('file', fs.createReadStream(pdfFile.filepath), {
-        filename: pdfFile.originalFilename ?? undefined,
-        contentType: pdfFile.mimetype ?? undefined,
+        filename: pdfFile.originalFilename ?? 'documento.pdf',
+        contentType: pdfFile.mimetype ?? 'application/pdf',
       });
 
-      const response = await fetch('https://chatbot-backend-y8bz.onrender.com/upload_pdf', {
-  method: 'POST',
-  headers: formData.getHeaders(), // ← Esto es lo que falta
-  body: formData as any,
-});
+      // ⚠️ Aquí usamos axios
+      const response = await axios.post(
+        'https://chatbot-backend-y8bz.onrender.com/upload_pdf',
+        formData,
+        { headers: formData.getHeaders() }
+      );
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        console.log('Respuesta con error desde backend IA:', result);
-        throw new Error(result?.detail || result?.message || JSON.stringify(result));
-      }
+      const result = response.data;
 
       const fullText = result.full_text;
-
       if (!fullText || fullText.trim().length === 0) {
         return res.status(400).json({ message: 'El backend no devolvió texto procesable' });
       }
 
-      // Guardar texto en Supabase
       const { error } = await supabase
         .from('empresa_config')
         .update({ pdf_text_content: fullText })
