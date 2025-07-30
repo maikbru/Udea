@@ -56,7 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // 3. Guardar en Supabase
       const { error } = await supabase
         .from('empresa_config')
-        .update({ pptx_text_content: fullText })
+        .update({ pptx_file_url: fullText })
         .eq('empresa_id', empresaId);
 
       if (error) {
