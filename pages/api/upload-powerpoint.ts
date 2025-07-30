@@ -1,9 +1,9 @@
 // /pages/api/upload-powerpoint.ts
 import { NextApiRequest, NextApiResponse } from 'next';
-import { IncomingForm } from 'formidable';
+import formidable from 'formidable';
 import fs from 'fs';
+import FormData from 'form-data';
 import { createClient } from '@supabase/supabase-js';
-import { v4 as uuidv4 } from 'uuid';
 
 export const config = {
   api: { bodyParser: false },
@@ -19,53 +19,58 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ message: 'Método no permitido' });
   }
 
-  const form = new IncomingForm({ keepExtensions: true });
-
+  const form = formidable({ keepExtensions: true });
 
   form.parse(req, async (err, fields, files) => {
-    if (err) {
-      console.error('Error al parsear el formulario:', err);
-      return res.status(500).json({ message: 'Error al procesar archivo PowerPoint' });
-    }
-
-    const empresaId = fields.empresaId?.[0];
-    const pptxFile = Array.isArray(files.pptxFile) ? files.pptxFile[0] : files.pptxFile;
-
-    if (!empresaId || !pptxFile) {
-      return res.status(400).json({ message: 'Faltan datos requeridos' });
-    }
-
     try {
-      const fileBuffer = fs.readFileSync(pptxFile.filepath);
-      const filename = `pptx-${empresaId}-${uuidv4()}.pptx`;
+      if (err) throw err;
 
-      const { data, error: uploadError } = await supabase.storage
-        .from('empresa-assets')
-        .upload(filename, fileBuffer, {
-          contentType: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-        });
+      const empresaId = fields.empresaId?.[0];
+      const pptxFile = Array.isArray(files.pptxFile) ? files.pptxFile[0] : files.pptxFile;
 
-      if (uploadError) {
-        console.error('Error al subir el archivo:', uploadError);
-        return res.status(500).json({ message: 'Error al subir a Supabase Storage' });
+      if (!empresaId || !pptxFile) {
+        return res.status(400).json({ message: 'empresaId o archivo faltante' });
       }
 
-      const fileUrl = `${process.env.SUPABASE_URL}/storage/v1/object/public/empresa-assets/${filename}`;
+      const formData = new FormData();
+      formData.append('file', fs.createReadStream(pptxFile.filepath), {
+        filename: pptxFile.originalFilename ?? undefined,
+        contentType: pptxFile.mimetype ?? undefined,
+      });
 
-      const { error: updateError } = await supabase
+      const response = await fetch('https://chatbot-backend-y8bz.onrender.com/upload_pptx', {
+        method: 'POST',
+        body: formData as any,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        console.log('Respuesta con error desde backend IA:', result);
+        throw new Error(result?.detail || result?.message || JSON.stringify(result));
+      }
+
+      const fullText = result.full_text;
+
+      if (!fullText || fullText.trim().length === 0) {
+        return res.status(400).json({ message: 'El backend no devolvió texto procesable del PPTX' });
+      }
+
+      const { error } = await supabase
         .from('empresa_config')
-        .update({ pptx_file_url: fileUrl })
+        .update({ pptx_text_content: fullText })
         .eq('empresa_id', empresaId);
 
-      if (updateError) {
-        console.error('Error al actualizar la base de datos:', updateError);
-        return res.status(500).json({ message: 'Error al guardar la URL del PowerPoint' });
+      if (error) {
+        console.error('Error al guardar en Supabase:', error);
+        return res.status(500).json({ message: 'Error al guardar el texto del PowerPoint en Supabase' });
       }
 
-      res.status(200).json({ message: 'Archivo PowerPoint guardado con éxito' });
-    } catch (error) {
-      console.error('Error procesando PowerPoint:', error);
-      res.status(500).json({ message: 'Error interno del servidor' });
+      return res.status(200).json({ message: result.message || 'PPTX procesado y guardado correctamente' });
+
+    } catch (e: any) {
+      console.error('Error final:', e);
+      return res.status(500).json({ message: e.message || 'Error inesperado' });
     }
   });
 }
