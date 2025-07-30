@@ -8,19 +8,20 @@ export default function Login() {
 
   const handleLogin = async () => {
     const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user, password })
-    });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ user, password }),
+});
 
-    const data = await res.json();
+if (!res.ok) {
+  const text = await res.text();
+  console.error('Error no-JSON:', text);
+  alert('Error en el login');
+  return;
+}
 
-    if (res.ok) {
-      localStorage.setItem('empresaId', data.empresaId);
-      router.push('/page1');
-    } else {
-      alert(data.message || 'Error al iniciar sesión');
-    }
+const data = await res.json();
+console.log('Login OK', data);
   };
 
   useEffect(() => {
