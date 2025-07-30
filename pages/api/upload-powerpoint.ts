@@ -1,8 +1,8 @@
-// /pages/api/upload-powerpoint.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import formidable from 'formidable';
 import fs from 'fs';
 import FormData from 'form-data';
+import axios from 'axios';
 import { createClient } from '@supabase/supabase-js';
 
 export const config = {
@@ -32,30 +32,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ message: 'empresaId o archivo faltante' });
       }
 
+      // 1. Crear el FormData para enviar al backend
       const formData = new FormData();
       formData.append('file', fs.createReadStream(pptxFile.filepath), {
-        filename: pptxFile.originalFilename ?? undefined,
-        contentType: pptxFile.mimetype ?? undefined,
+        filename: pptxFile.originalFilename ?? 'archivo.pptx',
+        contentType: pptxFile.mimetype ?? 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
       });
 
-      const response = await fetch('https://chatbot-backend-y8bz.onrender.com/upload_pptx', {
-        method: 'POST',
-        body: formData as any,
-      });
+      // 2. Usar axios y enviar encabezados correctos
+      const response = await axios.post(
+        'https://chatbot-backend-y8bz.onrender.com/upload_pptx',
+        formData,
+        { headers: formData.getHeaders() }
+      );
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        console.log('Respuesta con error desde backend IA:', result);
-        throw new Error(result?.detail || result?.message || JSON.stringify(result));
-      }
-
+      const result = response.data;
       const fullText = result.full_text;
 
       if (!fullText || fullText.trim().length === 0) {
         return res.status(400).json({ message: 'El backend no devolvió texto procesable del PPTX' });
       }
 
+      // 3. Guardar en Supabase
       const { error } = await supabase
         .from('empresa_config')
         .update({ pptx_text_content: fullText })
@@ -70,7 +68,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     } catch (e: any) {
       console.error('Error final:', e);
-      return res.status(500).json({ message: e.message || 'Error inesperado' });
+      return res.status(500).json({ message: e.message || 'Error inesperado al subir PowerPoint' });
     }
   });
 }
