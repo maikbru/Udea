@@ -7,22 +7,41 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = async () => {
+  if (!user || !password) {
+    alert('Por favor, completa usuario y contraseña');
+    return;
+  }
+
+  try {
     const res = await fetch('/api/login', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ user, password }),
-});
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ user, password })
+    });
 
-if (!res.ok) {
-  const text = await res.text();
-  console.error('Error no-JSON:', text);
-  alert('Error en el login');
-  return;
-}
+    const contentType = res.headers.get('content-type');
 
-const data = await res.json();
-console.log('Login OK', data);
-  };
+    if (!res.ok) {
+      const errorText = contentType?.includes('application/json')
+        ? await res.json()
+        : await res.text();
+
+      console.error('Error en login:', errorText);
+      alert('Error: ' + (errorText.message || 'No autorizado'));
+      return;
+    }
+
+    const data = await res.json();
+    console.log('Login exitoso', data);
+    localStorage.setItem('empresaId', data.empresaId);
+    router.push('/page1');
+  } catch (err) {
+    console.error('Error en fetch:', err);
+    alert('Fallo la conexión con el servidor');
+  }
+};
 
   useEffect(() => {
     const empresaId = localStorage.getItem('empresaId');
