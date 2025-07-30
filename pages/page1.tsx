@@ -9,6 +9,7 @@ import * as XLSX from 'xlsx';
 export default function CustomizationPage() {
   const [excelFile, setExcelFile] = useState<File | null>(null);
   const [wordFile, setWordFile] = useState<File | null>(null);
+  const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [activeSection, setActiveSection] = useState<'custom' | 'upload'>('custom');
   const [pptxFile, setPptxFile]=useState<File | null>(null);
   const router = useRouter();
@@ -508,6 +509,46 @@ export default function CustomizationPage() {
       Guardar Excel
     </button>
   </div>
+  {/* Subida de PDF como texto */}
+<div className="mb-4">
+  <label className="block mb-2 text-black font-semibold">Archivo PDF</label>
+  <input
+    type="file"
+    accept=".pdf"
+    onChange={(e) => setPdfFile(e.target.files?.[0] || null)}
+    className="text-black border p-2 rounded w-full mb-2"
+  />
+  <button
+    type="button"
+    onClick={async () => {
+      if (!pdfFile) return alert('Selecciona un archivo PDF');
+      const empresaId = localStorage.getItem('empresaId');
+      if (!empresaId) return alert('Empresa no identificada');
+
+      const formData = new FormData();
+      formData.append('empresaId', empresaId);
+      formData.append('pdfFile', pdfFile);
+
+      const res = await fetch('/api/upload-pdf', {
+        method: 'POST',
+        body: formData,
+      });
+
+      let result;
+      try {
+        result = await res.json();
+      } catch (err) {
+        console.error('Respuesta no válida:', err);
+        return alert('Error inesperado del servidor');
+      }
+
+      alert(result.message);
+    }}
+    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+  >
+    Guardar contenido del PDF
+  </button>
+</div>
       {/* Subida de PowerPoint */}
 <div className="mb-4">
   <label className="block mb-2 text-black font-semibold">Presentación PowerPoint (.pptx)</label>
