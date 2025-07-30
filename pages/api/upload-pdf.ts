@@ -47,7 +47,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.detail || 'Error desde backend IA');
+        console.log('Respuesta con error desde backend IA:', result);
+        throw new Error(result?.detail || result?.message || JSON.stringify(result));
       }
 
       const fullText = result.full_text;
