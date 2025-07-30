@@ -40,9 +40,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
       const response = await fetch('https://chatbot-backend-y8bz.onrender.com/upload_pdf', {
-        method: 'POST',
-        body: formData as any,
-      });
+  method: 'POST',
+  headers: formData.getHeaders(), // ← Esto es lo que falta
+  body: formData as any,
+});
 
       const result = await response.json();
 
