@@ -13,12 +13,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { empresaId, data } = req.body;
 
-  if (!empresaId || !data || !Array.isArray(data)) {
+  if (!empresaId || !Array.isArray(data)) {
     return res.status(400).json({ message: 'Faltan datos requeridos o data inválida' });
   }
 
   try {
-    // 1. Guardar el Excel en Supabase como respaldo
+    // 1. Guardar respaldo en Supabase
     const { error } = await supabase
       .from('empresa_config')
       .update({ excel_data: data })
@@ -29,10 +29,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ message: 'Error al guardar Excel en Supabase' });
     }
 
-    // 2. Enviar los datos al backend para procesamiento
+    // 2. Llamar a FastAPI
     const response = await axios.post(
-      'https://chatbot-backend-y8bz.onrender.com/upload-excel',
-      { data },
+      'https://chatbot-backend-y8bz.onrender.com/upload_excel', // ⛔
+      { data }, 
       {
         headers: {
           'Content-Type': 'application/json'
