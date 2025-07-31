@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // 2. Llamar a FastAPI
     const response = await axios.post(
-      'https://chatbot-backend-y8bz.onrender.com/upload_excel', // ⛔
+      'https://chatbot-backend-y8bz.onrender.com/upload-excel', // ⛔
       { data }, 
       {
         headers: {
