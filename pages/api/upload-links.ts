@@ -24,17 +24,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const resultados = [];
 
     for (const url of links) {
-      try {
-        const scrapeRes = await axios.post('https://chatbot-backend-y8bz.onrender.com/scrape_url', { url });
-        resultados.push({ url, success: true, message: scrapeRes.data.message });
-      } catch (err: any) {
-        resultados.push({
-          url,
-          success: false,
-          message: err?.response?.data?.detail || 'Error desconocido al procesar URL'
-        });
-      }
-    }
+  try {
+    const scrapeRes = await axios.post(
+      'https://chatbot-backend-y8bz.onrender.com/scrape_url',
+      { links },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+    resultados.push({ url, success: true, message: scrapeRes.data.message });
+  } catch (err: any) {
+    resultados.push({
+      url,
+      success: false,
+      message: err?.response?.data?.detail || 'Error desconocido al procesar URL'
+    });
+  }
+}
 
     // Guardar los links originales en Supabase
     const { error } = await supabase
