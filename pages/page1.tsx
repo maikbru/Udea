@@ -25,7 +25,27 @@ export default function CustomizationPage() {
   const [welcomeText, setWelcomeText] = useState('');
   const [linkPage, setLinkPage] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
-  
+
+  const [loadingExcel, setLoadingExcel] = useState(false);
+  const [excelSuccess, setExcelSuccess] = useState(false);
+
+  const [loadingPdf, setLoadingPdf] = useState(false);
+  const [pdfSuccess, setPdfSuccess] = useState(false);
+
+  const [loadingPptx, setLoadingPptx] = useState(false);
+  const [pptxSuccess, setPptxSuccess] = useState(false);
+
+  const [loadingWord, setLoadingWord] = useState(false);
+  const [wordSuccess, setWordSuccess] = useState(false);
+
+  const [loadingLinks, setLoadingLinks] = useState(false);
+  const [linksSuccess, setLinksSuccess] = useState(false);
+
+  const renderButtonContent = (loading: boolean, success: boolean, label: string) => {
+    if (loading) return <span className="flex items-center gap-2"><span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" /> Subiendo...</span>;
+    if (success) return <span className="flex items-center gap-2">✅ Subido</span>;
+    return label;
+  };
   // Refs
   const fileInputRef = useRef<HTMLInputElement>(null);
   const logoInputRef = useRef<HTMLInputElement | null>(null);
@@ -479,35 +499,38 @@ export default function CustomizationPage() {
       className="text-black border p-2 rounded w-full mb-2"
     />
     <button
-      type="button"
-      onClick={async () => {
-        if (!excelFile) return alert('Selecciona un archivo');
-        const empresaId = localStorage.getItem('empresaId');
-        if (!empresaId) return alert('Empresa no identificada');
+  type="button"
+  onClick={async () => {
+    if (!excelFile) return;
+    setLoadingExcel(true);
+    setExcelSuccess(false);
+    const empresaId = localStorage.getItem('empresaId');
+    if (!empresaId) return;
 
-        const reader = new FileReader();
-        reader.onload = async (event) => {
-          const data = new Uint8Array(event.target?.result as ArrayBuffer);
-          const workbook = XLSX.read(data, { type: 'array' });
-          const sheetName = workbook.SheetNames[0];
-          const sheet = workbook.Sheets[sheetName];
-          const jsonData = XLSX.utils.sheet_to_json(sheet);
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const data = new Uint8Array(event.target?.result as ArrayBuffer);
+      const workbook = XLSX.read(data, { type: 'array' });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+      const jsonData = XLSX.utils.sheet_to_json(sheet);
 
-          const res = await fetch('/api/upload-excel', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ empresaId, data: jsonData }),
-          });
+      const res = await fetch('/api/upload-excel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ empresaId, data: jsonData }),
+      });
 
-          const result = await res.json();
-          alert(result.message);
-        };
-        reader.readAsArrayBuffer(excelFile);
-      }}
-      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-    >
-      Guardar Excel
-    </button>
+      const result = await res.json();
+      setLoadingExcel(false);
+      setExcelSuccess(res.ok);
+    };
+    reader.readAsArrayBuffer(excelFile);
+  }}
+  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+>
+  {renderButtonContent(loadingExcel, excelSuccess, 'Guardar Excel')}
+</button>
   </div>
   {/* Subida de PDF como texto */}
 <div className="mb-4">
@@ -519,35 +542,32 @@ export default function CustomizationPage() {
     className="text-black border p-2 rounded w-full mb-2"
   />
   <button
-    type="button"
-    onClick={async () => {
-      if (!pdfFile) return alert('Selecciona un archivo PDF');
-      const empresaId = localStorage.getItem('empresaId');
-      if (!empresaId) return alert('Empresa no identificada');
+  type="button"
+  onClick={async () => {
+    if (!pdfFile) return;
+    setLoadingPdf(true);
+    setPdfSuccess(false);
+    const empresaId = localStorage.getItem('empresaId');
+    if (!empresaId) return;
 
-      const formData = new FormData();
-      formData.append('empresaId', empresaId);
-      formData.append('pdfFile', pdfFile);
+    const formData = new FormData();
+    formData.append('empresaId', empresaId);
+    formData.append('pdfFile', pdfFile);
 
-      const res = await fetch('/api/upload-pdf', {
-        method: 'POST',
-        body: formData,
-      });
+    const res = await fetch('/api/upload-pdf', {
+      method: 'POST',
+      body: formData,
+    });
 
-      let result;
-      try {
-        result = await res.json();
-      } catch (err) {
-        console.error('Respuesta no válida:', err);
-        return alert('Error inesperado del servidor');
-      }
+    await res.json();
+    setLoadingPdf(false);
+    setPdfSuccess(res.ok);
+  }}
+  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+>
+  {renderButtonContent(loadingPdf, pdfSuccess, 'Guardar contenido del PDF')}
+</button>
 
-      alert(result.message);
-    }}
-    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-  >
-    Guardar contenido del PDF
-  </button>
 </div>
       {/* Subida de PowerPoint */}
 <div className="mb-4">
@@ -559,40 +579,32 @@ export default function CustomizationPage() {
     className="text-black border p-2 rounded w-full mb-2"
   />
   <button
-    type="button"
-    onClick={async () => {
-      if (!pptxFile) return alert('Selecciona un archivo PowerPoint');
-      const empresaId = localStorage.getItem('empresaId');
-      if (!empresaId) return alert('Empresa no identificada');
+  type="button"
+  onClick={async () => {
+    if (!pptxFile) return;
+    setLoadingPptx(true);
+    setPptxSuccess(false);
+    const empresaId = localStorage.getItem('empresaId');
+    if (!empresaId) return;
 
-      const formData = new FormData();
-      formData.append('empresaId', empresaId);
-      formData.append('pptxFile', pptxFile);
+    const formData = new FormData();
+    formData.append('empresaId', empresaId);
+    formData.append('pptxFile', pptxFile);
 
-      const res = await fetch('/api/upload-powerpoint', {
-        method: 'POST',
-        body: formData,
-      });
+    const res = await fetch('/api/upload-powerpoint', {
+      method: 'POST',
+      body: formData,
+    });
 
-      let result;
-      try {
-        result = await res.json();
-      } catch (err) {
-        console.error('La respuesta no es JSON:', err);
-        alert('Error inesperado del servidor');
-        return;
-      }
+    await res.json();
+    setLoadingPptx(false);
+    setPptxSuccess(res.ok);
+  }}
+  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+>
+  {renderButtonContent(loadingPptx, pptxSuccess, 'Guardar PowerPoint')}
+</button>
 
-      if (res.ok) {
-        alert(result.message);
-      } else {
-        alert(result.message || 'Error al subir PowerPoint');
-      }
-    }}
-    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-  >
-    Guardar PowerPoint
-  </button>
 </div>
   {/* Subida de Word */}
   <div className="mb-4">
@@ -604,41 +616,32 @@ export default function CustomizationPage() {
       className="text-black border p-2 rounded w-full mb-2"
     />
     <button
-      type="button"
-      onClick={async () => {
-        if (!wordFile) return alert('Selecciona un archivo Word');
-        const empresaId = localStorage.getItem('empresaId');
-        if (!empresaId) return alert('Empresa no identificada');
+  type="button"
+  onClick={async () => {
+    if (!wordFile) return;
+    setLoadingWord(true);
+    setWordSuccess(false);
+    const empresaId = localStorage.getItem('empresaId');
+    if (!empresaId) return;
 
-        const formData = new FormData();
-        formData.append('empresaId', empresaId);
-        formData.append('termsFile', wordFile);
+    const formData = new FormData();
+    formData.append('empresaId', empresaId);
+    formData.append('termsFile', wordFile);
 
-        const res = await fetch('/api/upload-word', {
-          method: 'POST',
-          body: formData,
-        });
+    const res = await fetch('/api/upload-word', {
+      method: 'POST',
+      body: formData,
+    });
 
-        let result;
-try {
-  result = await res.json();
-} catch (err) {
-  console.error('La respuesta no es JSON o falló el parseo:', err);
-  alert('Error inesperado del servidor (respuesta no válida)');
-  return;
-}
+    await res.json();
+    setLoadingWord(false);
+    setWordSuccess(res.ok);
+  }}
+  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+>
+  {renderButtonContent(loadingWord, wordSuccess, 'Guardar Word')}
+</button>
 
-if (res.ok) {
-  alert(result.message);
-} else {
-  alert(result.message || 'Error al subir el archivo Word');
-}
-
-      }}
-      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-    >
-      Guardar Word
-    </button>
   </div>
 
   {/* Links */}
@@ -670,24 +673,28 @@ if (res.ok) {
       + Agregar otro link
     </button>
     <button
-      type="button"
-      onClick={async () => {
-        const empresaId = localStorage.getItem('empresaId');
-        if (!empresaId) return alert('Empresa no identificada');
+  type="button"
+  onClick={async () => {
+    const empresaId = localStorage.getItem('empresaId');
+    if (!empresaId) return;
+    setLoadingLinks(true);
+    setLinksSuccess(false);
 
-        const res = await fetch('/api/upload-links', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ empresaId, links: linkPages }),
-        });
+    const res = await fetch('/api/upload-links', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ empresaId, links: linkPages }),
+    });
 
-        const result = await res.json();
-        alert(result.message);
-      }}
-      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-    >
-      Guardar Links
-    </button>
+    await res.json();
+    setLoadingLinks(false);
+    setLinksSuccess(res.ok);
+  }}
+  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+>
+  {renderButtonContent(loadingLinks, linksSuccess, 'Guardar Links')}
+</button>
+
   </div>
 </div>
 )
