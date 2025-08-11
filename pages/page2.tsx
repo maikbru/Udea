@@ -214,7 +214,7 @@ const TermsModal = () => (
               accept="image/*"
             />
           </div>
-          <span className="ml-3 text-black text-lg font-semibold hidden md:block">ModusPonens</span>
+          
         </div>
         
         {/* User Options */}
