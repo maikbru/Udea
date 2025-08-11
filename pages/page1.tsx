@@ -273,10 +273,7 @@ export default function CustomizationPage() {
               className="hidden"
               accept="image/*"
             />
-          </div>
-          <span className="ml-3 text-black text-lg font-semibold hidden md:block">""</span>
-        </div>
-        
+                  
         {/* User Options */}
         <div className="flex items-center space-x-4">
           <div className="hidden md:flex items-center">
