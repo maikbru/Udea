@@ -274,7 +274,7 @@ export default function CustomizationPage() {
               accept="image/*"
             />
           </div>
-          <span className="ml-3 text-black text-lg font-semibold hidden md:block">ModusPonens</span>
+          <span className="ml-3 text-black text-lg font-semibold hidden md:block">""</span>
         </div>
         
         {/* User Options */}
