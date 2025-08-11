@@ -25,6 +25,7 @@ export default function CustomizationPage() {
   const [welcomeText, setWelcomeText] = useState('');
   const [linkPage, setLinkPage] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  
 
   const [loadingExcel, setLoadingExcel] = useState(false);
   const [excelSuccess, setExcelSuccess] = useState(false);
@@ -43,7 +44,7 @@ export default function CustomizationPage() {
 
   const renderButtonContent = (loading: boolean, success: boolean, label: string) => {
     if (loading) return <span className="flex items-center gap-2"><span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" /> Subiendo...</span>;
-    if (success) return <span className="flex items-center gap-2">✅ Subido</span>;
+    if (success) return <span className="flex items-center gap-2">✅ Cargado</span>;
     return label;
   };
   // Refs
@@ -487,7 +488,7 @@ export default function CustomizationPage() {
     // Reemplaza este fragmento en tu componente React para separar las subidas:
 
 <div className="max-w-4xl mx-auto bg-white p-6 rounded shadow">
-  <h2 className="text-2xl font-bold text-gray-800 mb-4">Subida de archivos y enlaces</h2>
+  <h2 className="text-2xl font-bold text-gray-800 mb-4">Cargar base de conocimiento</h2>
 
   {/* Subida de Excel */}
   <div className="mb-4">

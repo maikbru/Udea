@@ -221,7 +221,6 @@ const TermsModal = () => (
         <div className="flex items-center space-x-4">
           <div className="hidden md:flex items-center">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">
-              Bienvenido
             </h1>
           </div>
         </div>
@@ -256,18 +255,29 @@ const TermsModal = () => (
           <h2 className="text-xl text-black font-semibold text-gray-800 mt-10 mb-4">Conversación con el agente</h2>
 
           {/* Historial de conversación */}
-          <div className="max-h-[400px] overflow-y-auto mb-4 bg-gray-50 text-black rounded p-4 border border-gray-200">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`mb-2 p-3 rounded-lg w-fit max-w-[80%] ${
-                  msg.role === 'user' ? 'bg-blue-100 ml-auto text-right' : 'bg-green-100'
-                }`}
-              >
-                <p className="text-sm text-black">{msg.text}</p>
-              </div>
-            ))}
-          </div>
+<div className="max-h-[400px] overflow-y-auto mb-4 bg-gray-50 text-black rounded p-4 border border-gray-200">
+  {messages.map((msg, index) => (
+    <div
+      key={index}
+      className={`mb-2 p-3 rounded-lg w-fit max-w-[80%] ${
+        msg.role === 'user' ? 'bg-blue-100 ml-auto text-right' : 'bg-green-100'
+      }`}
+    >
+      <p className="text-sm text-black">{msg.text}</p>
+    </div>
+  ))}
+
+  {/* Indicador de que el bot está escribiendo */}
+  {loading && (
+    <div className="mb-2 p-3 rounded-lg w-fit max-w-[80%] bg-green-100">
+      <div className="flex space-x-1">
+        <span className="animate-bounce">•</span>
+        <span className="animate-bounce delay-150">•</span>
+        <span className="animate-bounce delay-300">•</span>
+      </div>
+    </div>
+  )}
+</div>
           
           {/* Input y botón */}
           <div className="flex gap-2">
