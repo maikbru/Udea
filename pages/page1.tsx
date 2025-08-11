@@ -418,7 +418,7 @@ export default function CustomizationPage() {
           
           {/* Text Input */}
           
-            <h2 className="text-xl font-semibold text-gray-800 mt-10 mb-4">Ingrese pregunta inicio de chat</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mt-10 mb-4">Ingrese el nombre del agente virtual</h2>
             <input 
               type="text" 
               placeholder="Escribe tu texto aquí" 
