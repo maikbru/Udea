@@ -196,23 +196,15 @@ const TermsModal = () => (
         <div className="flex items-center">
           <div className="relative">
             <div 
-              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl cursor-pointer overflow-hidden"
+              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl overflow-hidden"
               style={{
                 backgroundImage: logo ? `url(${logo})` : 'linear-gradient(to right, #8b5cf6, #ec4899)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
-              onClick={() => logoInputRef.current?.click()}
             >
               {!logo && 'MP'}
             </div>
-            <input 
-              type="file" 
-              ref={logoInputRef}
-              onChange={handleImageUpload}
-              className="hidden"
-              accept="image/*"
-            />
           </div>
           
         </div>
@@ -228,9 +220,7 @@ const TermsModal = () => (
 
       {/* Main Content */}
       <div 
-        className={`main-content center justify-center mt-16 p-8 transition-all duration-300 ${
-          sidebarCollapsed ? 'ml-20' : 'ml-64'
-        }`}
+        className={`main-content center justify-center mt-16 p-8 transition-all duration-300`}
       >
         <div className="max-w-4xl mx-auto">
           <div className="max-w-4xl mx-auto rounded-lg" style={{ backgroundColor: '#11998e' }}>

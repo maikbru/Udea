@@ -25,7 +25,11 @@ export default function CustomizationPage() {
   const [welcomeText, setWelcomeText] = useState('');
   const [linkPage, setLinkPage] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
-  
+
+  const [WordName, setWordName] = useState<string[]>(['']);
+  const [ExcelName, setExcelName] = useState<string[]>(['']);
+  const [PdfName, setPdfName] = useState<string[]>(['']);
+  const [PPName, setPPName] = useState<string[]>(['']);
 
   const [loadingExcel, setLoadingExcel] = useState(false);
   const [excelSuccess, setExcelSuccess] = useState(false);
@@ -206,7 +210,7 @@ export default function CustomizationPage() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      empresaId,
+      empresaId,    //GUARDAR NOMBRES DE ARCHIVOS!!!!!!
       logo,
       bgColor,
       sidebarColor,
@@ -232,6 +236,10 @@ export default function CustomizationPage() {
       .then(res => res.json())
       .then(data => {
         setConfig(data);
+        setWordName(data.word_name || null);
+        setExcelName(data.excel_name || null);
+        setPdfName(data.pdf_name || null);
+        setPPName(data.pptx_name || null);
         setLogo(data.logo || null);
         setBgColor(data.bgColor || '#f8fafc');
         setSidebarColor(data.sidebarColor || '#2563eb');

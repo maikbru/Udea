@@ -21,6 +21,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .from('empresa_config')
       .select(`
         logo,
+        word_name,
+        excel_name,
+        pptx_name,
+        pdf_name,
         bg_color,
         sidebar_color,
         welcome_text,
@@ -45,6 +49,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   sidebarColor: data.sidebar_color,
   welcomeText: data.welcome_text,
   terminos: data.terms_text,
+  ExcelName: data.excel_name,
+  WordName: data.word_name,
+  PdfName: data.pdf_name,
+  PPName: data.pptx_name,
   username: data.users?.[0]?.username || ''
 };
 
