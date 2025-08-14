@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const empresaId = fields.empresaId?.[0];
       const pdfFile = Array.isArray(files.pdfFile) ? files.pdfFile[0] : files.pdfFile;
-
+      const pdfname = Array.isArray(fields.filename) ? fields.filename[0] : fields.filename;
       if (!empresaId || !pdfFile) {
         return res.status(400).json({ message: 'empresaId o archivo faltante' });
       }
@@ -55,7 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const { error } = await supabase
         .from('empresa_config')
-        .update({ pdf_text_content: fullText })
+        .update({ pdf_text_content: fullText, pdf_name:pdfname })
         .eq('empresa_id', empresaId);
 
       if (error) {

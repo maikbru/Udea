@@ -114,7 +114,7 @@ export default function CustomizationPage() {
 
 
 
- const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
   if (!file) return;
 
@@ -123,22 +123,38 @@ export default function CustomizationPage() {
   reader.onloadend = () => {
     const img = new Image();
     img.onload = () => {
+      // Altura objetivo en px: ajusta si usas otra altura en el contenedor (h-10 ≈ 40px)
+      const targetHeight = 40;
+
+      // evita división por 0
+      const imgHeight = img.height || 1;
+      const scale = targetHeight / imgHeight;
+      const targetWidth = Math.max(1, Math.round(img.width * scale));
+
       const canvas = document.createElement('canvas');
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+
       const ctx = canvas.getContext('2d');
-      const targetSize = 100;
+      if (!ctx) {
+        console.error('No se pudo obtener el contexto 2D del canvas');
+        return;
+      }
 
-      canvas.width = targetSize;
-      canvas.height = targetSize;
+      // Dibuja la imagen escalada manteniendo proporciones
+      ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
 
-      ctx?.drawImage(img, 0, 0, targetSize, targetSize);
       const resizedDataUrl = canvas.toDataURL('image/png');
       setLogo(resizedDataUrl);
     };
+
+    // reader.result es string cuando usamos readAsDataURL
     img.src = reader.result as string;
   };
 
   reader.readAsDataURL(file);
 };
+
 
   // Remove image
   const removeImage = () => {
@@ -236,10 +252,10 @@ export default function CustomizationPage() {
       .then(res => res.json())
       .then(data => {
         setConfig(data);
-        setWordName(data.word_name || null);
-        setExcelName(data.excel_name || null);
-        setPdfName(data.pdf_name || null);
-        setPPName(data.pptx_name || null);
+        setWordName(data.WordName || null);
+        setExcelName(data.ExcelName || null);
+        setPdfName(data.PdfName || null);
+        setPPName(data.PPName || null);
         setLogo(data.logo || null);
         setBgColor(data.bgColor || '#f8fafc');
         setSidebarColor(data.sidebarColor || '#2563eb');
@@ -264,27 +280,20 @@ export default function CustomizationPage() {
         {/* Customizable Logo */}
         <div className="flex items-center">
           <div className="relative">
-            <div 
-              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-xl cursor-pointer overflow-hidden"
-              style={{
-                backgroundImage: logo ? `url(${logo})` : 'linear-gradient(to right, #8b5cf6, #ec4899)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-              onClick={() => logoInputRef.current?.click()}
-            >
-              {!logo && 'MP'}
+            <div className="h-10 rounded-lg flex items-center justify-center overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500">
+              {logo ? (
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-full w-auto object-contain"
+                />
+              ) : (
+                <span className="text-white font-bold text-xl">MP</span>
+              )}
             </div>
-            <input 
-              type="file" 
-              ref={logoInputRef}
-              onChange={handleImageUpload}
-              className="hidden"
-              accept="image/*"
-            />
           </div>
-          
         </div>
+
         
         {/* User Options */}
         <div className="flex items-center space-x-4">
@@ -321,7 +330,7 @@ export default function CustomizationPage() {
   className={`sidebar bg-blue-600 text-white fixed top-16 left-0 h-full py-4 flex flex-col items-start transition-all duration-300 z-10 ${
     sidebarCollapsed ? 'w-16' : 'w-64'
   }`}
-  style={{ backgroundColor: '#11998e' }}>
+  style={{ backgroundColor: sidebarColor }}>
 
   {/* Botón colapsar/expandir */}
   <button
@@ -445,7 +454,7 @@ export default function CustomizationPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* buttons Color */}
               <div>
-                <h2 className="font-bold text-black mb-2">Botones</h2>
+                <h2 className="font-bold text-black mb-2">Barra lateral</h2>
                 <div className="flex items-center">
                   <input 
                     type="color" 
@@ -500,11 +509,22 @@ export default function CustomizationPage() {
 
   {/* Subida de Excel */}
   <div className="mb-4">
-    <label className="block mb-2 text-black font-semibold">Archivo Preguntas Y Respuestas (Excel)</label>
+    <label className="block mb-2 text-black font-semibold">Archivo Preguntas Y Respuestas (.xlsx)</label>
+    <p className="text-sm text-gray-600 mb-2">Último archivo subido: {ExcelName ?? "ninguno"}</p>
     <input
       type="file"
       accept=".xlsx, .xls"
-      onChange={(e) => setExcelFile(e.target.files?.[0] || null)}
+      onChange={(e) => {
+      const f = e.target.files?.[0] || null;
+      setExcelFile(f);
+      if (f) {
+        // guarda nombre localmente (tienes este estado WordName)
+        setExcelName((prev) => {
+          // si tienes array o string ajusta según tu implementación
+          return [f.name];
+        });
+      }
+    }}
       className="text-black border p-2 rounded w-full mb-2"
     />
     <button
@@ -519,6 +539,7 @@ export default function CustomizationPage() {
     const reader = new FileReader();
     reader.onload = async (event) => {
       const data = new Uint8Array(event.target?.result as ArrayBuffer);
+      const ename= ExcelName
       const workbook = XLSX.read(data, { type: 'array' });
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
@@ -527,7 +548,7 @@ export default function CustomizationPage() {
       const res = await fetch('/api/upload-excel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ empresaId, data: jsonData }),
+        body: JSON.stringify({ empresaId, data: jsonData, ename }),
       });
 
       const result = await res.json();
@@ -541,13 +562,25 @@ export default function CustomizationPage() {
   {renderButtonContent(loadingExcel, excelSuccess, 'Guardar Excel')}
 </button>
   </div>
+
   {/* Subida de PDF como texto */}
 <div className="mb-4">
-  <label className="block mb-2 text-black font-semibold">Archivo PDF</label>
+  <label className="block mb-2 text-black font-semibold">Archivo PDF (.pdf)</label>
+  <p className="text-sm text-gray-600 mb-2">Último archivo subido: {PdfName ? `{${PdfName}}` : "ninguno"}</p>
   <input
     type="file"
     accept=".pdf"
-    onChange={(e) => setPdfFile(e.target.files?.[0] || null)}
+    onChange={(e) => {
+      const f = e.target.files?.[0] || null;
+      setPdfFile(f);
+      if (f) {
+        // guarda nombre localmente (tienes este estado WordName)
+        setPdfName((prev) => {
+          // si tienes array o string ajusta según tu implementación
+          return [f.name];
+        });
+      }
+    }}
     className="text-black border p-2 rounded w-full mb-2"
   />
   <button
@@ -562,6 +595,7 @@ export default function CustomizationPage() {
     const formData = new FormData();
     formData.append('empresaId', empresaId);
     formData.append('pdfFile', pdfFile);
+    formData.append('filename',pdfFile.name)
 
     const res = await fetch('/api/upload-pdf', {
       method: 'POST',
@@ -581,10 +615,21 @@ export default function CustomizationPage() {
       {/* Subida de PowerPoint */}
 <div className="mb-4">
   <label className="block mb-2 text-black font-semibold">Presentación PowerPoint (.pptx)</label>
+  <p className="text-sm text-gray-600 mb-2">Último archivo subido: {PPName ? `{${PPName}}` : "ninguno"}</p>
   <input
     type="file"
     accept=".ppt,.pptx"
-    onChange={(e) => setPptxFile(e.target.files?.[0] || null)}
+    onChange={(e) => {
+      const f = e.target.files?.[0] || null;
+      setPptxFile(f);
+      if (f) {
+        // guarda nombre localmente (tienes este estado WordName)
+        setPPName((prev) => {
+          // si tienes array o string ajusta según tu implementación
+          return [f.name];
+        });
+      }
+    }}
     className="text-black border p-2 rounded w-full mb-2"
   />
   <button
@@ -599,6 +644,7 @@ export default function CustomizationPage() {
     const formData = new FormData();
     formData.append('empresaId', empresaId);
     formData.append('pptxFile', pptxFile);
+    formData.append('filename',pptxFile.name)
 
     const res = await fetch('/api/upload-powerpoint', {
       method: 'POST',
@@ -616,42 +662,80 @@ export default function CustomizationPage() {
 
 </div>
   {/* Subida de Word */}
-  <div className="mb-4">
-    <label className="block mb-2 text-black font-semibold">Términos y condiciones (.docx)</label>
-    <input
-      type="file"
-      accept=".doc,.docx"
-      onChange={(e) => setWordFile(e.target.files?.[0] || null)}
-      className="text-black border p-2 rounded w-full mb-2"
-    />
-    <button
-  type="button"
-  onClick={async () => {
-    if (!wordFile) return;
-    setLoadingWord(true);
-    setWordSuccess(false);
-    const empresaId = localStorage.getItem('empresaId');
-    if (!empresaId) return;
+<div className="mb-4">
+  <label className="block mb-2 text-black font-semibold">Términos y condiciones (.docx)</label>
+  <p className="text-sm text-gray-600 mb-2">Último archivo subido: {WordName ? `{${WordName}}` : "ninguno"}</p>
+  <input
+    type="file"
+    accept=".doc,.docx"
+    onChange={(e) => {
+      const f = e.target.files?.[0] || null;
+      setWordFile(f);
+      if (f) {
+        // guarda nombre localmente (tienes este estado WordName)
+        setWordName((prev) => {
+          // si tienes array o string ajusta según tu implementación
+          return [f.name];
+        });
+      }
+    }}
+    className="text-black border p-2 rounded w-full mb-2"
+  />
+  <button
+    type="button"
+    onClick={async () => {
+      if (!wordFile) return;
+      setLoadingWord(true);
+      setWordSuccess(false);
+      const empresaId = localStorage.getItem('empresaId');
+      if (!empresaId) {
+        setLoadingWord(false);
+        return alert('Empresa no identificada');
+      }
 
-    const formData = new FormData();
-    formData.append('empresaId', empresaId);
-    formData.append('termsFile', wordFile);
+      try {
+        const formData = new FormData();
+        formData.append('empresaId', empresaId);
+        formData.append('termsFile', wordFile);
+        formData.append('filename', wordFile.name); // <-- nombre explícito
 
-    const res = await fetch('/api/upload-word', {
-      method: 'POST',
-      body: formData,
-    });
+        const res = await fetch('/api/upload-word', {
+          method: 'POST',
+          body: formData,
+        });
 
-    await res.json();
-    setLoadingWord(false);
-    setWordSuccess(res.ok);
-  }}
-  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
->
-  {renderButtonContent(loadingWord, wordSuccess, 'Guardar Word')}
-</button>
+        let result;
+        try {
+          result = await res.json();
+        } catch (err) {
+          console.error('Respuesta no JSON:', err);
+          setLoadingWord(false);
+          return alert('Error inesperado del servidor');
+        }
 
-  </div>
+        if (res.ok) {
+          // si el backend devuelve filename lo ponemos en el estado (opcional)
+          if (result.filename) {
+            setWordName([result.filename]);
+          }
+          setWordSuccess(true);
+        } else {
+          console.error('Error backend:', result);
+          setWordSuccess(false);
+          alert(result.message || 'Error al subir el archivo Word');
+        }
+      } catch (e) {
+        console.error('Error subida word:', e);
+        alert('Error al subir el archivo Word');
+      } finally {
+        setLoadingWord(false);
+      }
+    }}
+    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+  >
+    {renderButtonContent(loadingWord, wordSuccess, 'Guardar Word')}
+  </button>
+</div>
 
   {/* Links */}
   <div className="mb-4">

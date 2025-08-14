@@ -11,7 +11,7 @@ const supabase = createClient(
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).json({ message: 'Método no permitido' });
 
-  const { empresaId, data } = req.body;
+  const { empresaId, data, ename } = req.body;
 
   if (!empresaId || !Array.isArray(data)) {
     return res.status(400).json({ message: 'Faltan datos requeridos o data inválida' });
@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // 1. Guardar respaldo en Supabase
     const { error } = await supabase
       .from('empresa_config')
-      .update({ excel_data: data })
+      .update({ excel_data: data, excel_name:ename })
       .eq('empresa_id', empresaId);
 
     if (error) {

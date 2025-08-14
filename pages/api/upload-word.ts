@@ -36,6 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const empresaId = Array.isArray(fields.empresaId) ? fields.empresaId[0] : fields.empresaId;
     const termsFile = Array.isArray(files.termsFile) ? files.termsFile[0] : files.termsFile;
+    const wordname = Array.isArray(fields.filename) ? fields.filename[0] : fields.filename;
 
     if (!empresaId || !termsFile || !('filepath' in termsFile)) {
       return res.status(400).json({ message: 'empresaId o archivo faltante' });
@@ -46,7 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { error } = await supabase
       .from('empresa_config')
-      .update({ terms_text: termsText })
+      .update({ terms_text: termsText,word_name: wordname, })
       .eq('empresa_id', empresaId);
 
     if (error) {

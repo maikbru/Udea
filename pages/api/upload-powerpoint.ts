@@ -48,6 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const result = response.data;
       const fullText = result.full_text;
+      const ppname = Array.isArray(fields.filename) ? fields.filename[0] : fields.filename;
 
       if (!fullText || fullText.trim().length === 0) {
         return res.status(400).json({ message: 'El backend no devolvió texto procesable del PPTX' });
@@ -56,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // 3. Guardar en Supabase
       const { error } = await supabase
         .from('empresa_config')
-        .update({ pptx_file_url: fullText })
+        .update({ pptx_file_url: fullText, pptx_name:ppname })
         .eq('empresa_id', empresaId);
 
       if (error) {
